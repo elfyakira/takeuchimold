@@ -47,7 +47,6 @@ export default function Header() {
               alt={company.name || "会社ロゴ"}
               width={220}
               height={55}
-              className="brightness-0 invert"
             />
           </Link>
 

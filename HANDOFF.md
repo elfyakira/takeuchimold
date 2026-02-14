@@ -172,15 +172,16 @@ import { company, contact, navigation, locations, seo, images, site } from "@/li
 
 ### 5.3 フォントサイズ（追加/上書き）
 
+> **2026-02-14 更新: セクションタイトルを大きく変更**
+
 | トークン | サイズ | lineHeight | weight | 用途 |
 |---------|--------|-----------|--------|------|
-| `hero-title` | 64px | 1.3 | 700 | ヒーローコピー（明朝体） |
-| `hero-title-sp` | 36px | 1.3 | 700 | ヒーローSP |
-| `section-en` | 48px | 1.2 | 700 | セクション英語見出し |
-| `section-en-sp` | 32px | 1.2 | 700 | セクション英語見出しSP |
+| `hero-title` | 128px (PC) / 72px (SP) | 1.0 | 400 | ヒーローコピー（明朝体、太字なし） |
+| `section-en` | **96px (PC) / 64px (SP)** | 1.2 | **700** | セクション英語見出し（SERVICE等） |
 | `section-jp` | 14px | 1.6 | 400 | セクション日本語副見出し |
 | `feature-num` | 64px | 1.0 | 700 | 強み番号（01/02/03） |
 | `nav` | 13px | 1.0 | 700 | ナビゲーション |
+| `link-large` | **48px** | 1.2 | **700** | Learn More / VIEW ALL / GET IN TOUCH |
 
 ### 5.4 スペーシング（既存と一致、変更不要）
 
@@ -192,12 +193,12 @@ import { company, contact, navigation, locations, seo, images, site } from "@/li
 
 ### 5.5 UIコンポーネント仕様
 
-**ボタン3種:**
+**リンク/ボタン:**
 
 | 名称 | CSS | 使用場面 |
 |------|-----|---------|
-| リンク型 | `underline underline-offset-4 text-inherit` | Learn More, VIEW ALL |
-| ボックス白枠 | `px-10 py-4 border border-white bg-transparent text-white` | GET IN TOUCH |
+| Learn More / VIEW ALL（白背景） | `text-[48px] font-bold text-[#004888] underline underline-offset-8` | SERVICE, RECRUIT, EQUIPMENT |
+| Learn More / GET IN TOUCH（暗い背景） | `text-[48px] font-bold text-white underline underline-offset-8` | CONCEPT, COMPANY, ContactBanner |
 | ボックスprimary | `px-10 py-4 bg-primary text-white` | ENTRY |
 
 ---
@@ -256,22 +257,24 @@ const roboto = Roboto({
 | ナビフォント | 15px 通常 | 13px / bold / 英語大文字 / tracking-wider |
 | SP固定ヘッダー背景 | 白 | 白のまま（変更なし） |
 
-### 7.2 ContactBanner.tsx（新規作成）
+### 7.2 ContactBanner.tsx
+
+> **2026-02-14 更新: タイトルサイズ拡大、GET IN TOUCHをテキストリンクに変更**
 
 全ページのFooter直前に配置する共通セクション。
 
-**レイアウト仕様（デザイン指示書 section_id: "contact_banner" 参照）:**
+**レイアウト仕様:**
 - 全幅、背景: 工場画像 + `rgba(0,0,0,0.5)` overlay
-- パディング: `150px 0`
+- パディング: `100px 0` (SP) / `150px 0` (PC)
 - コンテナ: `max-w-container mx-auto`
 - PC配置: `flex justify-between items-end`
 - SP配置: `text-center` スタック
 
 **要素:**
-- 左: `CONTACT`（section-en, 48px, white, font-en）
+- 左: `CONTACT`（**64px SP / 96px PC, font-bold**, white, font-en）
 - 左: `お問合せ`（section-jp, 14px, white/60）
 - 左: `ご質問やご相談は、どうぞお気軽にお寄せください。小さなことでも大歓迎です。`（body, white/80）
-- 右: `GET IN TOUCH` ボタン（ボックス白枠型）→ `/contact`
+- 右: `GET IN TOUCH`（**48px, font-bold, white, underline, underline-offset-8**）→ `/contact`
 
 ### 7.3 Footer.tsx 改修（既存ファイルの大幅変更）
 
@@ -390,16 +393,15 @@ const roboto = Roboto({
 - 募集要項は「エンゲージに掲載の内容を後日入力」（プレースホルダーで仮実装）
 - ENTRY ボタン: ボックスprimary型、幅300px、高さ60px、中央揃え
 
-### 8.6 Contact（`/contact` → `src/app/contact/page.tsx` 新規）
+### 8.6 Contact（`/contact` → `src/app/contact/page.tsx`）
 
-> **デザインPDFにフォームページの仕様なし。以下は推奨実装。**
+> **2026-02-14 更新: フォームを削除し、電話・メール表示のみに変更**
 
 - ページタイトル: `CONTACT` / `お問い合わせ`（他ページと同じ英語+日本語スタイル）
-- フォームフィールド: お名前（必須）/ メールアドレス（必須）/ 電話番号 / 会社名 / お問い合わせ内容（必須・textarea）
-- 送信先: `POST /api/contact`（`src/app/api/contact/route.ts` に実装済み）
-- バリデーション: API側で実装済み（名前100字、メール形式、電話任意、メッセージ5000字）
-- **TODO:** メール送信処理（route.ts 内に SendGrid/Resend 等の設定が必要）
-- デザイン: 白背景、max-w-narrow（800px）、primary ボーダーのinputフィールド
+- **お電話でのお問い合わせ**: 電話番号をクリックで発信可能（tel:リンク）
+- **メールでのお問い合わせ**: メールアドレス `takeuchi@tkss.co.jp` をクリックでメーラー起動（mailto:リンク）
+- デザイン: 白背景、max-w-narrow（800px）、中央揃え
+- フォーム・API削除済み（`src/app/api/contact/` ディレクトリは削除）
 
 ---
 
@@ -682,7 +684,7 @@ cp "制作事例/DSC01448.JPG" works-6.jpg
 
 ## 14. 実装完了状況
 
-> **2026-02-05 実装完了**
+> **2026-02-14 更新**
 
 | Step | 作業 | 状態 |
 |------|------|------|
@@ -690,16 +692,63 @@ cp "制作事例/DSC01448.JPG" works-6.jpg
 | 1 | `data/site.json` 企業データ投入 | **完了** |
 | 2 | `tailwind.config.ts` カラー・フォント上書き | **完了** |
 | 3 | `layout.tsx` Google Fonts + themeColor | **完了** |
-| 4 | `Header.tsx` 改修（黒半透明bg / 白ロゴ常時 / 13px bold nav） | **完了** |
+| 4 | `Header.tsx` 改修（モバイルと同じロゴ表示に統一） | **完了** |
 | 5 | `Footer.tsx` 改修（シンプル1行ナビ中央 / #111bg） | **完了** |
 | 6 | `ContactBanner.tsx` 新規作成 | **完了** |
 | 7 | TOPページ（動画hero + 6セクション + ContactBanner） | **完了** |
 | 8 | About Us ページ（hero 50vh + FEATURE 3つの強み） | **完了** |
 | 9 | Service ページ（intro + works 6枚 + 設備テーブル16行） | **完了** |
 | 10 | Company ページ（greeting + outline 11項目 + access map） | **完了** |
-| 11 | Recruit ページ（culture 3カード + environment + requirements placeholder + ENTRY CTA） | **完了** |
-| 12 | Contact ページ（フォーム5フィールド + POST /api/contact） | **完了** |
-| 13 | ビルド検証 | **完了**（`npm run build` 成功、全12ページ静的生成） |
+| 11 | Recruit ページ | **次に実装予定** |
+| 12 | Contact ページ（電話・メール表示のみ、フォーム削除） | **完了** |
+| 13 | ビルド検証 | **完了** |
+
+---
+
+## 14.1 2026-02-14 セッションでの変更点
+
+### コンタクトページ
+- **フォームを削除** → 電話とメールアドレス表示のみに変更
+- メールアドレス: `takeuchi@tkss.co.jp`
+- `src/app/api/contact/` ディレクトリを削除（不要になったため）
+
+### TOPページ デザイン調整
+
+#### ヒーローセクション
+- 「原点を、極める」を**明朝体**（Noto Serif JP）に変更
+- フォントサイズ: 72px (SP) / 128px (PC)、太字なし
+- 「、」と「極」の間の余白を詰める（-0.3em）
+- スマホでは「原点を、」で改行、「極める」を右寄せ（pl-12）
+- サブテキスト: 18px (SP) / 22px (PC)
+- 表示位置を下に調整（pt-24 / lg:pt-32）
+
+#### セクションタイトル共通スタイル
+- SERVICE / COMPANY / RECRUIT / EQUIPMENT: **64px (SP) / 96px (PC)、太字、#004888**
+- 日本語副見出し（事業紹介等）: **#004888**
+
+#### Learn More / VIEW ALL 共通スタイル
+- フォントサイズ: **48px**
+- 太字
+- カラー: **#004888**（白背景セクション）/ **白**（暗い背景セクション）
+- アンダーライン: **underline-offset-8**
+
+#### RECRUITセクション リンクリスト
+- OUR CULTURE / ENVIRONMENT / REQUIREMENTS: **24px (SP) / 32px (PC)、太字、#004888**
+- 日本語（求める人物像等）: **#004888**
+- 矢印(→)を削除
+- VIEW ALLを削除
+- 右カラムを下に移動（pt-16 / lg:pt-24）
+
+#### ContactBanner
+- CONTACT: **64px (SP) / 96px (PC)、太字**
+- GET IN TOUCH: **48px、太字、白、アンダーライン**（アウトラインボタンから変更）
+
+### globals.css
+- Noto Serif JP をGoogle Fontsに追加
+- `--font-serif-jp` CSS変数を追加
+
+### data/site.json
+- メールアドレスを `takeuchi@tkss.co.jp` に更新
 
 ---
 
@@ -707,11 +756,11 @@ cp "制作事例/DSC01448.JPG" works-6.jpg
 
 | 項目 | 状態 | 対応 |
 |------|------|------|
+| **Recruitページ** | **次に実装** | デザイン完成形に合わせて実装予定 |
 | 募集要項の詳細 | 未確定 | エンゲージ掲載内容を後日投入。プレースホルダーで仮実装 |
 | 制作事例（WORKS）写真 | 未提供 | クライアントより提供後に配置。プレースホルダーで仮実装 |
 | アクセスマップ | イラスト地図を想定 | 未提供の場合 Google Maps iframe で仮実装 |
 | ロゴ画像 | テンプレートのダミー | クライアントのロゴに差し替え |
-| メール送信設定 | 未実装 | SendGrid/Resend等のAPI Key + route.ts への実装が必要 |
 | Privacy Policy | 未定義 | 必要に応じて `/privacy` ページを追加 |
 | 404/500エラーページ | 未定義 | Next.jsデフォルトまたはカスタムで実装 |
 | OGP画像 | テンプレートの動的生成あり | 企業名・キャッチコピーを反映するよう確認 |
