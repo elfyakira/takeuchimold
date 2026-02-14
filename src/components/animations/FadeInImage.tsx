@@ -53,6 +53,9 @@ export default function FadeInImage({
   const [isVisible, setIsVisible] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
+  // delayが1未満の場合は秒単位と見なしてミリ秒に変換
+  const delayMs = delay < 1 ? delay * 1000 : delay;
+
   useEffect(() => {
     const element = ref.current;
     if (!element) return;
@@ -104,7 +107,7 @@ export default function FadeInImage({
       style={{
         opacity: shouldAnimate ? 1 : 0,
         transform: getTransform(direction, shouldAnimate),
-        transition: `opacity ${duration}ms ease-out ${delay}ms, transform ${duration}ms ease-out ${delay}ms`,
+        transition: `opacity ${duration}ms ease-out ${delayMs}ms, transform ${duration}ms ease-out ${delayMs}ms`,
       }}
     >
       <Image

@@ -8,6 +8,7 @@ interface FadeInUpProps {
   duration?: number;
   distance?: number;
   className?: string;
+  style?: React.CSSProperties;
   as?: ElementType;
 }
 
@@ -32,6 +33,7 @@ export default function FadeInUp({
   duration = 600,
   distance = 30,
   className = '',
+  style: externalStyle,
   as: Component = 'div',
 }: FadeInUpProps) {
   const ref = useRef<HTMLElement>(null);
@@ -79,18 +81,23 @@ export default function FadeInUp({
     };
   }, []);
 
-  const style = {
+  // delayが1未満の場合は秒単位と見なしてミリ秒に変換
+  const delayMs = delay < 1 ? delay * 1000 : delay;
+
+  const animationStyle: React.CSSProperties = {
     opacity: isVisible ? 1 : 0,
     transform: isVisible ? 'translateY(0)' : `translateY(${distance}px)`,
-    transition: `opacity ${duration}ms ease-out ${delay}ms, transform ${duration}ms ease-out ${delay}ms`,
+    transition: `opacity ${duration}ms ease-out ${delayMs}ms, transform ${duration}ms ease-out ${delayMs}ms`,
     willChange: 'opacity, transform',
   };
+
+  const mergedStyle = externalStyle ? { ...externalStyle, ...animationStyle } : animationStyle;
 
   return (
     <Component
       ref={ref as React.RefObject<HTMLDivElement>}
       className={className}
-      style={style}
+      style={mergedStyle}
     >
       {children}
     </Component>
