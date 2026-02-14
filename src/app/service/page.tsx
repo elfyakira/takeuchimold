@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import ContactBanner from "@/components/ContactBanner";
-import { FadeInUp, StaggerContainer } from "@/components/animations";
+import { FadeInUp, StaggerContainer, HeroBackground } from "@/components/animations";
 
 const equipmentData = [
   { name: "高速マシニングセンタ", maker: "牧野フライス", model: "V99L", size: "2300×1000×650" },
@@ -39,12 +39,14 @@ export default function ServicePage() {
       </section>
 
       {/* Hero Image - Fixed Background */}
-      <section
-        className="h-[300px] lg:h-[500px] bg-fixed bg-cover bg-center"
-        style={{ backgroundImage: "url('/images/service-hero.jpg')" }}
-        role="img"
-        aria-label="金型製作"
-      />
+      <HeroBackground>
+        <section
+          className="h-[300px] lg:h-[500px] bg-fixed bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/service-hero.jpg')" }}
+          role="img"
+          aria-label="金型製作"
+        />
+      </HeroBackground>
 
       {/* Intro */}
       <section className="py-section-y-sp lg:py-section-y">

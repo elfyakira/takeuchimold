@@ -2,7 +2,7 @@
 
 import { contact } from "@/lib/site";
 import Link from "next/link";
-import { FadeInUp } from "@/components/animations";
+import { FadeInUp, HeroBackground } from "@/components/animations";
 
 export default function ContactPage() {
   return (
@@ -20,12 +20,14 @@ export default function ContactPage() {
       </section>
 
       {/* Hero Image */}
-      <section
-        className="h-[250px] lg:h-[400px] bg-fixed bg-cover bg-center"
-        style={{ backgroundImage: "url('/images/contact-bg.jpg')" }}
-        role="img"
-        aria-label="お問い合わせ"
-      />
+      <HeroBackground>
+        <section
+          className="h-[250px] lg:h-[400px] bg-fixed bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/contact-bg.jpg')" }}
+          role="img"
+          aria-label="お問い合わせ"
+        />
+      </HeroBackground>
 
       {/* Main Content */}
       <section className="py-section-y-sp lg:py-section-y">

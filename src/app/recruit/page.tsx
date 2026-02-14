@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import ContactBanner from "@/components/ContactBanner";
-import { FadeInUp, StaggerContainer } from "@/components/animations";
+import { FadeInUp, StaggerContainer, HeroBackground } from "@/components/animations";
 
 const cultureItems = [
   {
@@ -375,12 +375,14 @@ export default function RecruitPage() {
       </section>
 
       {/* Hero Image - Fixed Background */}
-      <section
-        className="h-[300px] lg:h-[500px] bg-fixed bg-cover bg-center"
-        style={{ backgroundImage: "url('/images/recruit-hero.jpg')" }}
-        role="img"
-        aria-label="採用イメージ"
-      />
+      <HeroBackground>
+        <section
+          className="h-[300px] lg:h-[500px] bg-fixed bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/recruit-hero.jpg')" }}
+          role="img"
+          aria-label="採用イメージ"
+        />
+      </HeroBackground>
 
       {/* Culture */}
       <section id="culture" className="bg-[#004888] text-white py-section-y-sp lg:py-section-y">

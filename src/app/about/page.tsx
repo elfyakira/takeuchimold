@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import ContactBanner from "@/components/ContactBanner";
-import { FadeInUp, StaggerContainer } from "@/components/animations";
+import { FadeInUp, FadeInImage, HeroBackground } from "@/components/animations";
 
 const features = [
   {
@@ -30,13 +30,15 @@ export default function AboutPage() {
     <main>
       {/* Hero Section - Full Screen with overlay */}
       <section className="relative h-screen min-h-[600px] flex items-center">
-        <Image
-          src="/images/about-hero.jpg"
-          alt="工場内部"
-          fill
-          className="object-cover"
-          priority
-        />
+        <HeroBackground className="absolute inset-0">
+          <Image
+            src="/images/about-hero.jpg"
+            alt="工場内部"
+            fill
+            className="object-cover"
+            priority
+          />
+        </HeroBackground>
         <div className="absolute inset-0 bg-black/40" />
         <div className="relative max-w-container mx-auto px-6 lg:px-12 w-full">
           <FadeInUp duration={800}>
@@ -96,17 +98,18 @@ export default function AboutPage() {
                   </p>
                 </FadeInUp>
                 {/* Image - Right Aligned */}
-                <FadeInUp delay={index * 100 + 200}>
-                  <div className="flex justify-end overflow-hidden">
-                    <Image
-                      src={f.image}
-                      alt={f.title}
-                      width={600}
-                      height={450}
-                      className="w-full lg:w-[60%] aspect-[4/3] object-cover transition-transform duration-300 hover:scale-105"
-                    />
-                  </div>
-                </FadeInUp>
+                <div className="flex justify-end">
+                  <FadeInImage
+                    src={f.image}
+                    alt={f.title}
+                    width={600}
+                    height={450}
+                    className="w-full aspect-[4/3] object-cover"
+                    containerClassName="w-full lg:w-[60%]"
+                    direction="right"
+                    delay={index * 100 + 200}
+                  />
+                </div>
               </div>
             ))}
           </div>

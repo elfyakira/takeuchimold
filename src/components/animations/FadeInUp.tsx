@@ -11,6 +11,21 @@ interface FadeInUpProps {
   as?: ElementType;
 }
 
+// スクロール位置が0になるまで待ち、さらに少し待機
+function waitForScrollTop(): Promise<void> {
+  return new Promise(resolve => {
+    const check = () => {
+      if (window.scrollY === 0) {
+        // スクロール完了後、100ms待ってからアニメーション開始
+        setTimeout(resolve, 100);
+      } else {
+        requestAnimationFrame(check);
+      }
+    };
+    check();
+  });
+}
+
 export default function FadeInUp({
   children,
   delay = 0,
@@ -26,7 +41,6 @@ export default function FadeInUp({
     const element = ref.current;
     if (!element) return;
 
-    // Check for reduced motion preference
     const prefersReducedMotion = window.matchMedia(
       '(prefers-reduced-motion: reduce)'
     ).matches;
@@ -36,23 +50,32 @@ export default function FadeInUp({
       return;
     }
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(element);
-        }
-      },
-      {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px',
-      }
-    );
+    let observer: IntersectionObserver | null = null;
+    let cancelled = false;
 
-    observer.observe(element);
+    // スクロール位置が0になってからIntersectionObserverを開始
+    waitForScrollTop().then(() => {
+      if (cancelled || !element) return;
+
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer?.unobserve(element);
+          }
+        },
+        {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px',
+        }
+      );
+
+      observer.observe(element);
+    });
 
     return () => {
-      observer.disconnect();
+      cancelled = true;
+      observer?.disconnect();
     };
   }, []);
 

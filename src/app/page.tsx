@@ -2,22 +2,24 @@
 
 import Image from "next/image";
 import ContactBanner from "@/components/ContactBanner";
-import { FadeInUp, FadeInImage, StaggerContainer, AnimatedLink } from "@/components/animations";
+import { FadeInUp, FadeInImage, StaggerContainer, AnimatedLink, HeroBackground } from "@/components/animations";
 
 export default function Home() {
   return (
     <main>
       {/* ==================== 1. HERO (Video Background) ==================== */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden pt-24 lg:pt-32">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src="/images/hero-video.mp4" type="video/mp4" />
-        </video>
+        <HeroBackground className="absolute inset-0">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src="/images/hero-video.mp4" type="video/mp4" />
+          </video>
+        </HeroBackground>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30" />
         <div className="relative text-center text-white px-4">
           <FadeInUp duration={800}>
@@ -117,6 +119,7 @@ export default function Home() {
                 width={600}
                 height={450}
                 className="w-full h-auto object-cover"
+                direction="right"
               />
             </div>
           </div>
@@ -128,35 +131,35 @@ export default function Home() {
         <div className="max-w-container mx-auto px-6 lg:px-12">
           <div className="flex flex-col-reverse lg:flex-row gap-12 lg:gap-16 items-center">
             {/* Left: Image Grid */}
-            <StaggerContainer className="lg:w-1/2 grid grid-cols-2 gap-3" staggerDelay={150}>
-              <div className="col-span-2 overflow-hidden">
-                <Image
-                  src="/images/company-1.jpg"
-                  alt="工場内部"
-                  width={300}
-                  height={200}
-                  className="w-full h-auto object-cover transition-transform duration-300 hover:scale-105"
-                />
-              </div>
-              <div className="overflow-hidden">
-                <Image
-                  src="/images/company-2.jpg"
-                  alt="設備"
-                  width={300}
-                  height={200}
-                  className="w-full h-auto object-cover transition-transform duration-300 hover:scale-105"
-                />
-              </div>
-              <div className="overflow-hidden">
-                <Image
-                  src="/images/company-3.jpg"
-                  alt="作業風景"
-                  width={300}
-                  height={200}
-                  className="w-full h-auto object-cover transition-transform duration-300 hover:scale-105"
-                />
-              </div>
-            </StaggerContainer>
+            <div className="lg:w-1/2 grid grid-cols-2 gap-3">
+              <FadeInImage
+                src="/images/company-1.jpg"
+                alt="工場内部"
+                width={600}
+                height={400}
+                className="w-full h-auto object-cover"
+                containerClassName="col-span-2"
+                direction="left"
+              />
+              <FadeInImage
+                src="/images/company-2.jpg"
+                alt="設備"
+                width={300}
+                height={200}
+                className="w-full h-auto object-cover"
+                direction="left"
+                delay={100}
+              />
+              <FadeInImage
+                src="/images/company-3.jpg"
+                alt="作業風景"
+                width={300}
+                height={200}
+                className="w-full h-auto object-cover"
+                direction="left"
+                delay={200}
+              />
+            </div>
             {/* Right: Text */}
             <div className="lg:w-1/2">
               <FadeInUp>

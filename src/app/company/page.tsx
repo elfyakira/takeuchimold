@@ -1,8 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import ContactBanner from "@/components/ContactBanner";
-import { FadeInUp, StaggerContainer } from "@/components/animations";
+import { FadeInUp, FadeInImage, StaggerContainer, HeroBackground } from "@/components/animations";
 
 const outlineItems = [
   { label: "社名", value: "株式会社竹内金型製作所" },
@@ -34,12 +33,14 @@ export default function CompanyPage() {
       </section>
 
       {/* Hero Image - Fixed Background */}
-      <section
-        className="h-[300px] lg:h-[500px] bg-fixed bg-cover bg-center"
-        style={{ backgroundImage: "url('/images/company-hero.jpg')" }}
-        role="img"
-        aria-label="社屋外観"
-      />
+      <HeroBackground>
+        <section
+          className="h-[300px] lg:h-[500px] bg-fixed bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/company-hero.jpg')" }}
+          role="img"
+          aria-label="社屋外観"
+        />
+      </HeroBackground>
 
       {/* Greeting */}
       <section className="py-section-y-sp lg:py-section-y">
@@ -79,17 +80,16 @@ export default function CompanyPage() {
               </FadeInUp>
             </div>
             {/* President Photo */}
-            <FadeInUp delay={200} className="lg:w-2/5">
-              <div className="overflow-hidden">
-                <Image
-                  src="/images/president.jpg"
-                  alt="代表取締役社長 竹内 芳一"
-                  width={400}
-                  height={530}
-                  className="w-full h-auto object-cover transition-transform duration-300 hover:scale-105"
-                />
-              </div>
-            </FadeInUp>
+            <FadeInImage
+              src="/images/president.jpg"
+              alt="代表取締役社長 竹内 芳一"
+              width={400}
+              height={530}
+              className="w-full h-auto object-cover"
+              containerClassName="lg:w-2/5"
+              direction="right"
+              delay={200}
+            />
           </div>
         </div>
       </section>
