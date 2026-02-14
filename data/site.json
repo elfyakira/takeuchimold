@@ -1,0 +1,106 @@
+{
+  "navigation": {
+    "main": [
+      { "label": "ABOUT US", "href": "/about" },
+      { "label": "SERVICE", "href": "/service" },
+      { "label": "COMPANY", "href": "/company" },
+      { "label": "RECRUIT", "href": "/recruit" },
+      { "label": "CONTACT", "href": "/contact" }
+    ],
+    "footer": [
+      { "label": "ABOUT US", "href": "/about" },
+      { "label": "SERVICE", "href": "/service" },
+      { "label": "COMPANY", "href": "/company" },
+      { "label": "RECRUIT", "href": "/recruit" },
+      { "label": "CONTACT", "href": "/contact" }
+    ],
+    "cta": {
+      "label": "",
+      "href": "/contact"
+    }
+  },
+  "company": {
+    "name": "株式会社竹内金型製作所",
+    "nameShort": "竹内金型製作所",
+    "nameEn": "Takeuchi Mold Co., Ltd.",
+    "id": "takeuchi-mold",
+    "ceo": "竹内 芳一",
+    "established": "昭和45年2月",
+    "capital": "1,000万円",
+    "revenue": "",
+    "employees": "25名",
+    "business": "プラスチック射出成型用金型の設計・製作",
+    "license": "",
+    "catchphrase": "原点を、極める",
+    "mission": "金型はすべての製品の原点。私たちはその重要性を胸に、日夜技術を磨き、信頼される品質を届けています。"
+  },
+  "contact": {
+    "phone": "052-444-8206",
+    "phoneFormatted": "052-444-8206",
+    "phoneTel": "0524448206",
+    "fax": "052-444-3811",
+    "email": "n-ito@tkss.co.jp",
+    "hours": "8:30〜17:30",
+    "recruitContact": "n-ito@tkss.co.jp"
+  },
+  "locations": {
+    "headquarters": {
+      "name": "本社",
+      "zipCode": "497-0013",
+      "address": "愛知県あま市七宝町川部四反田27番地",
+      "access": "",
+      "mapUrl": ""
+    },
+    "branches": []
+  },
+  "social": {
+    "instagram": ""
+  },
+  "images": {
+    "logo": "/images/logo.png",
+    "logoSquare": "/images/logo-square.png",
+    "logoOnly": "/images/logo-only.png"
+  },
+  "seo": {
+    "siteUrl": "",
+    "titleSuffix": " | 株式会社竹内金型製作所",
+    "defaultTitle": "株式会社竹内金型製作所 | 原点を、極める",
+    "defaultDescription": "愛知県あま市の金型メーカー。プラスチック射出成型用金型の設計・製作。55年以上の実績と職人技術で、自動車部品・家電・OA機器等の高精度金型を提供します。"
+  },
+  "stats": {
+    "yearsInBusiness": "55年以上",
+    "projectsCompleted": "",
+    "employees": "25名",
+    "retentionRate": ""
+  },
+  "history": [],
+  "services": [],
+  "works": [],
+  "news": [],
+  "recruit": {
+    "catchphrase": "",
+    "subCatchphrase": "",
+    "data": [],
+    "benefits": {
+      "vacation": [],
+      "allowances": [],
+      "facilities": []
+    },
+    "positions": {
+      "highSchool": { "title": "", "items": [] },
+      "midCareer": { "title": "", "items": [] }
+    },
+    "faq": [],
+    "interviews": []
+  },
+  "ceo": {
+    "name": "竹内 芳一",
+    "title": "代表取締役社長",
+    "image": "/images/president.jpg",
+    "message": [
+      "創業以来、私たちは「金型はものづくりの原点である」という想いを大切にし、お客様の製品品質を支える確かな技術の提供に努めてまいりました。",
+      "金型づくりは、一つとして同じ答えのない仕事です。だからこそ社員一人ひとりが技術を磨き続け、お客様の課題に真摯に向き合い、最適解を導き出す姿勢を大切にしています。その積み重ねこそが、当社の信頼と品質を支えていると考えております。",
+      "今後も「原点を、極める。」という言葉を胸に、ものづくりの根幹を担う企業として、お客様の期待を超える金型づくりに邁進してまいります。"
+    ]
+  }
+}

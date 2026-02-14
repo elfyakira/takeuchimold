@@ -1,0 +1,418 @@
+{
+  "document_type": "hp_design_pdf",
+  "total_pages": 5,
+  "pages": [
+    {
+      "page_number": 1,
+      "sections": [
+        {
+          "section_id": "p1_header",
+          "section_name": "header",
+          "elements": [
+            { "element_id": "p1_nav_1", "element_type": "nav_item", "text": "ABOUT US", "role": "ナビゲーション", "notes": "" },
+            { "element_id": "p1_nav_2", "element_type": "nav_item", "text": "SERVICE", "role": "ナビゲーション", "notes": "" },
+            { "element_id": "p1_nav_3", "element_type": "nav_item", "text": "COMPANY", "role": "ナビゲーション", "notes": "" },
+            { "element_id": "p1_nav_4", "element_type": "nav_item", "text": "RECRUIT", "role": "ナビゲーション", "notes": "" },
+            { "element_id": "p1_nav_5", "element_type": "nav_item", "text": "CONTACT", "role": "ナビゲーション", "notes": "" }
+          ]
+        },
+        {
+          "section_id": "p1_hero",
+          "section_name": "hero",
+          "elements": [
+            { "element_id": "p1_hero_copy_main", "element_type": "h1", "text": "原点を、極める", "role": "キャッチコピー", "notes": "メインビジュアル内テキスト" },
+            { "element_id": "p1_hero_copy_sub", "element_type": "body", "text": "金型はすべての製品の原点。\n私たちはその重要性を胸に、日夜技術を磨き、信頼される品質を届けています。", "role": "サブコピー", "notes": "メインビジュアル内テキスト" }
+          ]
+        },
+        {
+          "section_id": "p1_philosophy",
+          "section_name": "about",
+          "elements": [
+            { "element_id": "p1_phil_h2_1", "element_type": "h2", "text": "原点", "role": "見出し", "notes": "" },
+            { "element_id": "p1_phil_body_1", "element_type": "body", "text": "私たちの生活の身近にあるボールペンや定規、テレビのリモコン、電話や時計…\nそして自動車やエアコン、パソコンに至るまで、目に触れるほとんどの製品は、\n金型によって形作られています。量産される工業製品をたどれば、その多くは金型に\n行き着く...まさに金型は「モノづくり」の原点です。", "role": "本文", "notes": "" },
+            { "element_id": "p1_phil_h2_2", "element_type": "h2", "text": "極める", "role": "見出し", "notes": "" },
+            { "element_id": "p1_phil_body_2", "element_type": "body", "text": "竹内金型製作所は、この原点に向き合い、責任を持って技術を磨き続けています。\n金型はすべての製品の品質と信頼を左右する重要な要素。だからこそ、社員一人\nひとりが高い技術力を誇り、妥協なく生産に取り組みます。", "role": "本文", "notes": "" },
+            { "element_id": "p1_phil_btn", "element_type": "button", "text": "Learn More", "role": "CTA", "notes": "" }
+          ]
+        },
+        {
+          "section_id": "p1_service",
+          "section_name": "service",
+          "elements": [
+            { "element_id": "p1_serv_h2_en", "element_type": "h2", "text": "SERVICE", "role": "見出し（英語）", "notes": "" },
+            { "element_id": "p1_serv_h2_jp", "element_type": "h3", "text": "事業紹介", "role": "見出し（日本語）", "notes": "" },
+            { "element_id": "p1_serv_body", "element_type": "body", "text": "私たちは、プラスチック射出成型の設計・製作を手がける金\n型メーカーです。豊富な加工設備と現場の技術を活かし、\n細かな精度が求められる金型にも真摯に向き合いながら、\n量産部品づくりの土台となる金型を提供しています。", "role": "本文", "notes": "" },
+            { "element_id": "p1_serv_btn", "element_type": "button", "text": "Learn More", "role": "CTA", "notes": "" }
+          ]
+        },
+        {
+          "section_id": "p1_company",
+          "section_name": "company",
+          "elements": [
+            { "element_id": "p1_comp_h2_en", "element_type": "h2", "text": "COMPANY", "role": "見出し（英語）", "notes": "" },
+            { "element_id": "p1_comp_h2_jp", "element_type": "h3", "text": "会社案内", "role": "見出し（日本語）", "notes": "" },
+            { "element_id": "p1_comp_body", "element_type": "body", "text": "昭和45年の創業以来、時代が変わっても、ものづくりへの\n想いは変わりません。挑戦と改善を重ねながら、技術を磨\nき、品質を磨き続けてきました。その歩みが、今の私たち\nを形づくっています。", "role": "本文", "notes": "" },
+            { "element_id": "p1_comp_btn", "element_type": "button", "text": "Learn More", "role": "CTA", "notes": "" }
+          ]
+        },
+        {
+          "section_id": "p1_recruit",
+          "section_name": "recruit",
+          "elements": [
+            { "element_id": "p1_rec_h2_en", "element_type": "h2", "text": "RECRUIT", "role": "見出し（英語）", "notes": "" },
+            { "element_id": "p1_rec_h2_jp", "element_type": "h3", "text": "採用情報", "role": "見出し（日本語）", "notes": "" },
+            { "element_id": "p1_rec_body", "element_type": "body", "text": "竹内金型製作所では、経験よりも意欲を重視しています。\nベテランの先輩が手取り足取り教えてくれるので、未経験から\nでも技術者として成長できます。\n\n金型は奥深い。\nでも、その分できることが増えていく楽しさがあります。手に\n職をつけたい。長く働ける技術を身につけたい。そんな方にと\nって、ここは確かな挑戦の場です。", "role": "本文", "notes": "" },
+            { "element_id": "p1_rec_sub_1", "element_type": "h4", "text": "OUR CULTURE\n求める人物像", "role": "リンクテキスト", "notes": "リスト形式" },
+            { "element_id": "p1_rec_sub_2", "element_type": "h4", "text": "ENVIRONMENT\n働く環境", "role": "リンクテキスト", "notes": "リスト形式" },
+            { "element_id": "p1_rec_sub_3", "element_type": "h4", "text": "REQUIREMENTS\n募集要項", "role": "リンクテキスト", "notes": "リスト形式" },
+            { "element_id": "p1_rec_btn", "element_type": "button", "text": "VIEW ALL", "role": "CTA", "notes": "" }
+          ]
+        },
+        {
+          "section_id": "p1_equipment",
+          "section_name": "equipment",
+          "elements": [
+            { "element_id": "p1_equip_h2_en", "element_type": "h2", "text": "EQUIPMENT", "role": "見出し（英語）", "notes": "" },
+            { "element_id": "p1_equip_h2_jp", "element_type": "h3", "text": "設備", "role": "見出し（日本語）", "notes": "" },
+            { "element_id": "p1_equip_link", "element_type": "button", "text": "VIEW ALL", "role": "CTA", "notes": "リンク形式" }
+          ]
+        },
+        {
+          "section_id": "p1_contact",
+          "section_name": "contact",
+          "elements": [
+            { "element_id": "p1_cont_h2_en", "element_type": "h2", "text": "CONTACT", "role": "見出し（英語）", "notes": "" },
+            { "element_id": "p1_cont_h2_jp", "element_type": "h3", "text": "お問合せ", "role": "見出し（日本語）", "notes": "" },
+            { "element_id": "p1_cont_body", "element_type": "body", "text": "ご質問やご相談は、どうぞお気軽にお寄せ\nください。小さなことでも大歓迎です。", "role": "本文", "notes": "" },
+            { "element_id": "p1_cont_btn", "element_type": "button", "text": "GET IN TOUCH", "role": "CTA", "notes": "" }
+          ]
+        },
+        {
+          "section_id": "p1_footer",
+          "section_name": "footer",
+          "elements": [
+            { "element_id": "p1_foot_nav_1", "element_type": "nav_item", "text": "ABOUT US", "role": "フッターリンク", "notes": "" },
+            { "element_id": "p1_foot_nav_2", "element_type": "nav_item", "text": "SERVICE", "role": "フッターリンク", "notes": "" },
+            { "element_id": "p1_foot_nav_3", "element_type": "nav_item", "text": "COMPANY", "role": "フッターリンク", "notes": "" },
+            { "element_id": "p1_foot_nav_4", "element_type": "nav_item", "text": "RECRUIT", "role": "フッターリンク", "notes": "" },
+            { "element_id": "p1_foot_nav_5", "element_type": "nav_item", "text": "CONTACT", "role": "フッターリンク", "notes": "" }
+          ]
+        }
+      ]
+    },
+    {
+      "page_number": 2,
+      "sections": [
+        {
+          "section_id": "p2_header",
+          "section_name": "header",
+          "elements": [
+            { "element_id": "p2_nav_1", "element_type": "nav_item", "text": "ABOUT US", "role": "ナビゲーション", "notes": "" },
+            { "element_id": "p2_nav_2", "element_type": "nav_item", "text": "SERVICE", "role": "ナビゲーション", "notes": "" },
+            { "element_id": "p2_nav_3", "element_type": "nav_item", "text": "COMPANY", "role": "ナビゲーション", "notes": "" },
+            { "element_id": "p2_nav_4", "element_type": "nav_item", "text": "RECRUIT", "role": "ナビゲーション", "notes": "" },
+            { "element_id": "p2_nav_5", "element_type": "nav_item", "text": "CONTACT", "role": "ナビゲーション", "notes": "" }
+          ]
+        },
+        {
+          "section_id": "p2_hero",
+          "section_name": "hero",
+          "elements": [
+            { "element_id": "p2_hero_h1", "element_type": "h1", "text": "ABOUT US", "role": "ページタイトル", "notes": "" },
+            { "element_id": "p2_hero_lead", "element_type": "h2", "text": "品質をつくるのは、技術と設備、そして姿勢です。", "role": "リード文", "notes": "" },
+            { "element_id": "p2_hero_body", "element_type": "body", "text": "私たちは長年培ってきた職人技術と最新鋭の設備を軸に、\nお客様が求める品質・精度・再現性を確実に実現するため、\n工程ごとの最適化と技術力の向上に継続して取り組んでいます。", "role": "本文", "notes": "" }
+          ]
+        },
+        {
+          "section_id": "p2_feature",
+          "section_name": "about",
+          "elements": [
+            { "element_id": "p2_feat_h2_en", "element_type": "h2", "text": "FEATURE", "role": "見出し（英語）", "notes": "" },
+            { "element_id": "p2_feat_h2_jp", "element_type": "h3", "text": "3つの強み", "role": "見出し（日本語）", "notes": "" },
+            { "element_id": "p2_feat_01_num", "element_type": "h3", "text": "01", "role": "番号", "notes": "" },
+            { "element_id": "p2_feat_01_title", "element_type": "h4", "text": "「 技術 」 ─ 経験に裏打ちされた職人精度", "role": "小見出し", "notes": "" },
+            { "element_id": "p2_feat_01_body", "element_type": "body", "text": "半世紀以上の経験で蓄積された加工ノウハウと、職人による精密な作業品質が当社の基盤です。\n複雑形状・微細精度・高難度金型にも対応できる理由は、材料特性や成形挙動まで理解したうえで最適な工法を選\n択できる"技術の深さ"にあります。安定した品質と高い再現性は、こうした技術力によって支えられています。", "role": "本文", "notes": "" },
+            { "element_id": "p2_feat_02_num", "element_type": "h3", "text": "02", "role": "番号", "notes": "" },
+            { "element_id": "p2_feat_02_title", "element_type": "h4", "text": "「 設備 」 ─ 高精度を実現する最新鋭の加工環境", "role": "小見出し", "notes": "" },
+            { "element_id": "p2_feat_02_body", "element_type": "body", "text": "高速マシニングセンタを中心に、CAD/CAM・3RNC放電加工・ワイヤーカット放電加工等などの先端設備を整\n備。高速加工、多軸加工、高効率データ連携により、精度向上・安定品質・短納期化を同時に実現する生産体制を\n構築しています。設備投資を継続することで、品質要求の高度化にも確実に対応できます。", "role": "本文", "notes": "" },
+            { "element_id": "p2_feat_03_num", "element_type": "h3", "text": "03", "role": "番号", "notes": "" },
+            { "element_id": "p2_feat_03_title", "element_type": "h4", "text": "「 姿勢 」 ─ 変化に応える柔軟性と改善への意志", "role": "小見出し", "notes": "" },
+            { "element_id": "p2_feat_03_body", "element_type": "body", "text": "技術革新や市場ニーズの変化に対し、柔軟かつ前向きに取り組む姿勢が当社の強みです。\n新しい構造や材料、加工方法にも積極的に挑戦し、"より良い品質のための改善"を日常的に行う文化が根づいてい\nます。この姿勢こそが、高い信頼性と持続的な技術力の土台となっています。", "role": "本文", "notes": "" }
+          ]
+        },
+        {
+          "section_id": "p2_contact",
+          "section_name": "contact",
+          "elements": [
+            { "element_id": "p2_cont_h2_en", "element_type": "h2", "text": "CONTACT", "role": "見出し（英語）", "notes": "" },
+            { "element_id": "p2_cont_h2_jp", "element_type": "h3", "text": "お問合せ", "role": "見出し（日本語）", "notes": "" },
+            { "element_id": "p2_cont_body", "element_type": "body", "text": "ご質問やご相談は、どうぞお気軽にお寄せ\nください。小さなことでも大歓迎です。", "role": "本文", "notes": "" },
+            { "element_id": "p2_cont_btn", "element_type": "button", "text": "GET IN TOUCH", "role": "CTA", "notes": "" }
+          ]
+        },
+        {
+          "section_id": "p2_footer",
+          "section_name": "footer",
+          "elements": [
+            { "element_id": "p2_foot_nav_1", "element_type": "nav_item", "text": "ABOUT US", "role": "フッターリンク", "notes": "" },
+            { "element_id": "p2_foot_nav_2", "element_type": "nav_item", "text": "SERVICE", "role": "フッターリンク", "notes": "" },
+            { "element_id": "p2_foot_nav_3", "element_type": "nav_item", "text": "COMPANY", "role": "フッターリンク", "notes": "" },
+            { "element_id": "p2_foot_nav_4", "element_type": "nav_item", "text": "RECRUIT", "role": "フッターリンク", "notes": "" },
+            { "element_id": "p2_foot_nav_5", "element_type": "nav_item", "text": "CONTACT", "role": "フッターリンク", "notes": "" }
+          ]
+        }
+      ]
+    },
+    {
+      "page_number": 3,
+      "sections": [
+        {
+          "section_id": "p3_header",
+          "section_name": "header",
+          "elements": [
+            { "element_id": "p3_nav_1", "element_type": "nav_item", "text": "ABOUT US", "role": "ナビゲーション", "notes": "" },
+            { "element_id": "p3_nav_2", "element_type": "nav_item", "text": "SERVICE", "role": "ナビゲーション", "notes": "" },
+            { "element_id": "p3_nav_3", "element_type": "nav_item", "text": "COMPANY", "role": "ナビゲーション", "notes": "" },
+            { "element_id": "p3_nav_4", "element_type": "nav_item", "text": "RECRUIT", "role": "ナビゲーション", "notes": "" },
+            { "element_id": "p3_nav_5", "element_type": "nav_item", "text": "CONTACT", "role": "ナビゲーション", "notes": "" }
+          ]
+        },
+        {
+          "section_id": "p3_hero",
+          "section_name": "hero",
+          "elements": [
+            { "element_id": "p3_hero_sub", "element_type": "h2", "text": "事業内容", "role": "サブタイトル", "notes": "" },
+            { "element_id": "p3_hero_h1", "element_type": "h1", "text": "SERVICE", "role": "ページタイトル", "notes": "" }
+          ]
+        },
+        {
+          "section_id": "p3_intro",
+          "section_name": "service",
+          "elements": [
+            { "element_id": "p3_intro_copy", "element_type": "h2", "text": "蓄積された技術で、最適な金型を。", "role": "キャッチコピー", "notes": "" },
+            { "element_id": "p3_intro_body", "element_type": "body", "text": "長年にわたり培ってきた技術力と経験を基盤に、幅広い製品カテゴリーに対応した\nプラスチック金型の設計・製作を手がけています。\n自動車部品・住設機器・家電・OA機器・工業部品など、多様な用途・材質・成形方式に対応し、\n製品特性や量産条件を踏まえた最適な構造設計を行うことが可能です。", "role": "本文", "notes": "" }
+          ]
+        },
+        {
+          "section_id": "p3_works",
+          "section_name": "works",
+          "elements": [
+            { "element_id": "p3_works_h2_en", "element_type": "h2", "text": "WORKS", "role": "見出し（英語）", "notes": "" },
+            { "element_id": "p3_works_h2_jp", "element_type": "h3", "text": "制作事例", "role": "見出し（日本語）", "notes": "" }
+          ]
+        },
+        {
+          "section_id": "p3_equipment_table",
+          "section_name": "equipment",
+          "elements": [
+            { "element_id": "p3_equip_h2", "element_type": "h2", "text": "設備詳細", "role": "見出し", "notes": "" },
+            { "element_id": "p3_equip_th_1", "element_type": "table_header", "text": "設備名", "role": "表ヘッダー", "notes": "" },
+            { "element_id": "p3_equip_th_2", "element_type": "table_header", "text": "メーカー名", "role": "表ヘッダー", "notes": "" },
+            { "element_id": "p3_equip_th_3", "element_type": "table_header", "text": "機台名", "role": "表ヘッダー", "notes": "" },
+            { "element_id": "p3_equip_th_4", "element_type": "table_header", "text": "最大ワークサイズ", "role": "表ヘッダー", "notes": "" },
+            { "element_id": "p3_equip_row1", "element_type": "table_row", "text": "高速マシニングセンタ | 牧野フライス | V99L | 2300×1000×650", "role": "表データ", "notes": "" },
+            { "element_id": "p3_equip_row2", "element_type": "table_row", "text": "高速マシニングセンタ | 牧野フライス | V77 | 1200×700×650", "role": "表データ", "notes": "" },
+            { "element_id": "p3_equip_row3", "element_type": "table_row", "text": "高速マシニングセンタ | 牧野フライス 2パレット | a81 | 900×800×1020", "role": "表データ", "notes": "" },
+            { "element_id": "p3_equip_row4", "element_type": "table_row", "text": "高速マシニングセンタ | 牧野フライス | V56 | 900×550×450", "role": "表データ", "notes": "" },
+            { "element_id": "p3_equip_row5", "element_type": "table_row", "text": "高速マシニングセンタ | 牧野フライス | V56 | 900×550×450", "role": "表データ", "notes": "※行4と同内容" },
+            { "element_id": "p3_equip_row6", "element_type": "table_row", "text": "マシニングセンタ | 牧野フライス | GF6 | 1000×700×650", "role": "表データ", "notes": "" },
+            { "element_id": "p3_equip_row7", "element_type": "table_row", "text": "マシニングセンタ | 牧野フライス | FNC1210A20 | 1210×1000×700", "role": "表データ", "notes": "" },
+            { "element_id": "p3_equip_row8", "element_type": "table_row", "text": "マシニングセンタ | 牧野フライス | FNC1210A30 | 1250×1000×700", "role": "表データ", "notes": "" },
+            { "element_id": "p3_equip_row9", "element_type": "table_row", "text": "高速マシニングセンタ | オークマ | MX-55VA | 1050×560×450", "role": "表データ", "notes": "" },
+            { "element_id": "p3_equip_row10", "element_type": "table_row", "text": "NC放電加工機 | ソディック 3R仕様 | AG80L | 1350×950×650", "role": "表データ", "notes": "" },
+            { "element_id": "p3_equip_row11", "element_type": "table_row", "text": "NC放電加工機 | ソディック 3R仕様 | AQ75L | 1050×900×600", "role": "表データ", "notes": "" },
+            { "element_id": "p3_equip_row12", "element_type": "table_row", "text": "NC放電加工機 | ソディック 3R仕様 | AG60L | 870×700×500", "role": "表データ", "notes": "" },
+            { "element_id": "p3_equip_row13", "element_type": "table_row", "text": "ワイヤーカット放電機 | ソディック リニヤ仕様 | AQ750L | 1050×750×400", "role": "表データ", "notes": "" },
+            { "element_id": "p3_equip_row14", "element_type": "table_row", "text": "ワイヤーカット放電機 | ソディック リニヤ仕様 | ALN600G | 800×570×350", "role": "表データ", "notes": "" },
+            { "element_id": "p3_equip_row15", "element_type": "table_row", "text": "ワイヤーカット放電機 | ソディック リニヤ仕様 | ALN600G | 800×570×350", "role": "表データ", "notes": "" },
+            { "element_id": "p3_equip_row16", "element_type": "table_row", "text": "ダイスポッティングプレス | 三起精工 | SDP1310-100 | 最大金型サイズ:1300×1000×1100㎜", "role": "表データ", "notes": "" }
+          ]
+        },
+        {
+          "section_id": "p3_contact",
+          "section_name": "contact",
+          "elements": [
+            { "element_id": "p3_cont_h2_en", "element_type": "h2", "text": "CONTACT", "role": "見出し（英語）", "notes": "" },
+            { "element_id": "p3_cont_h2_jp", "element_type": "h3", "text": "お問合せ", "role": "見出し（日本語）", "notes": "" },
+            { "element_id": "p3_cont_body", "element_type": "body", "text": "ご質問やご相談は、どうぞお気軽にお寄せ\nください。小さなことでも大歓迎です。", "role": "本文", "notes": "" },
+            { "element_id": "p3_cont_btn", "element_type": "button", "text": "GET IN TOUCH", "role": "CTA", "notes": "" }
+          ]
+        },
+        {
+          "section_id": "p3_footer",
+          "section_name": "footer",
+          "elements": [
+            { "element_id": "p3_foot_nav_1", "element_type": "nav_item", "text": "ABOUT US", "role": "フッターリンク", "notes": "" },
+            { "element_id": "p3_foot_nav_2", "element_type": "nav_item", "text": "SERVICE", "role": "フッターリンク", "notes": "" },
+            { "element_id": "p3_foot_nav_3", "element_type": "nav_item", "text": "COMPANY", "role": "フッターリンク", "notes": "" },
+            { "element_id": "p3_foot_nav_4", "element_type": "nav_item", "text": "RECRUIT", "role": "フッターリンク", "notes": "" },
+            { "element_id": "p3_foot_nav_5", "element_type": "nav_item", "text": "CONTACT", "role": "フッターリンク", "notes": "" }
+          ]
+        }
+      ]
+    },
+    {
+      "page_number": 4,
+      "sections": [
+        {
+          "section_id": "p4_header",
+          "section_name": "header",
+          "elements": [
+            { "element_id": "p4_nav_1", "element_type": "nav_item", "text": "ABOUT US", "role": "ナビゲーション", "notes": "" },
+            { "element_id": "p4_nav_2", "element_type": "nav_item", "text": "SERVICE", "role": "ナビゲーション", "notes": "" },
+            { "element_id": "p4_nav_3", "element_type": "nav_item", "text": "COMPANY", "role": "ナビゲーション", "notes": "" },
+            { "element_id": "p4_nav_4", "element_type": "nav_item", "text": "RECRUIT", "role": "ナビゲーション", "notes": "" },
+            { "element_id": "p4_nav_5", "element_type": "nav_item", "text": "CONTACT", "role": "ナビゲーション", "notes": "" }
+          ]
+        },
+        {
+          "section_id": "p4_hero",
+          "section_name": "hero",
+          "elements": [
+            { "element_id": "p4_hero_sub", "element_type": "h2", "text": "会社案内", "role": "サブタイトル", "notes": "" },
+            { "element_id": "p4_hero_h1", "element_type": "h1", "text": "COMPANY", "role": "ページタイトル", "notes": "" }
+          ]
+        },
+        {
+          "section_id": "p4_greeting",
+          "section_name": "company",
+          "elements": [
+            { "element_id": "p4_greet_h2_en", "element_type": "h2", "text": "GREETING", "role": "見出し（英語）", "notes": "" },
+            { "element_id": "p4_greet_h2_jp", "element_type": "h3", "text": "ごあいさつ", "role": "見出し（日本語）", "notes": "" },
+            { "element_id": "p4_greet_body", "element_type": "body", "text": "創業以来、私たちは「金型はものづくりの原点である」という想いを大切にし、お\n客様の製品品質を支える確かな技術の提供に努めてまいりました。\n\n金型づくりは、一つとして同じ答えのない仕事です。だからこそ社員一人ひとりが\n技術を磨き続け、お客様の課題に真摯に向き合い、最適解を導き出す姿勢を大切に\nしています。その積み重ねこそが、当社の信頼と品質を支えていると考えておりま\nす。今後も「原点を、極める。」という言葉を胸に、ものづくりの根幹を担う企業\nとして、お客様の期待を超える金型づくりに邁進してまいります。", "role": "本文", "notes": "" },
+            { "element_id": "p4_greet_sign", "element_type": "body", "text": "代表取締役社長 竹内 芳一", "role": "署名", "notes": "" }
+          ]
+        },
+        {
+          "section_id": "p4_outline",
+          "section_name": "company",
+          "elements": [
+            { "element_id": "p4_out_h2_en", "element_type": "h2", "text": "OUTLINE", "role": "見出し（英語）", "notes": "" },
+            { "element_id": "p4_out_h2_jp", "element_type": "h3", "text": "会社概要", "role": "見出し（日本語）", "notes": "" },
+            { "element_id": "p4_out_dl_1", "element_type": "definition_list_item", "text": "社名 : 株式会社竹内金型製作所", "role": "定義リスト", "notes": "" },
+            { "element_id": "p4_out_dl_2", "element_type": "definition_list_item", "text": "所在地 : 〒497-0013 愛知県あま市七宝町川部四反田27番地", "role": "定義リスト", "notes": "" },
+            { "element_id": "p4_out_dl_3", "element_type": "definition_list_item", "text": "連絡先 : TEL 052-444-8206 / FAX 052-444-3811", "role": "定義リスト", "notes": "" },
+            { "element_id": "p4_out_dl_4", "element_type": "definition_list_item", "text": "代表取締役社長 : 竹内 芳一", "role": "定義リスト", "notes": "" },
+            { "element_id": "p4_out_dl_5", "element_type": "definition_list_item", "text": "事業内容 : プラスチック射出成型用金型の設計・製作", "role": "定義リスト", "notes": "" },
+            { "element_id": "p4_out_dl_6", "element_type": "definition_list_item", "text": "営業品目 : 自動車部品・住設・家電・ＯＡ機器・コンテナ・工業部品・家庭用品等", "role": "定義リスト", "notes": "" },
+            { "element_id": "p4_out_dl_7", "element_type": "definition_list_item", "text": "資本金 : １，０００万円", "role": "定義リスト", "notes": "" },
+            { "element_id": "p4_out_dl_8", "element_type": "definition_list_item", "text": "創業 : 昭和４５年２月", "role": "定義リスト", "notes": "" },
+            { "element_id": "p4_out_dl_9", "element_type": "definition_list_item", "text": "従業員数 : 25名", "role": "定義リスト", "notes": "" },
+            { "element_id": "p4_out_dl_10", "element_type": "definition_list_item", "text": "敷地／建物 : 3550平方メートル／1980平方メートル", "role": "定義リスト", "notes": "" },
+            { "element_id": "p4_out_dl_11", "element_type": "definition_list_item", "text": "取引銀行 : 大垣共立銀行 七宝支店 / 名古屋銀行 大治支店 / 三十三銀行 戸田支店 / 岐阜信用金庫 稲葉地支店", "role": "定義リスト", "notes": "" }
+          ]
+        },
+        {
+          "section_id": "p4_access",
+          "section_name": "access",
+          "elements": [
+            { "element_id": "p4_acc_h2_en", "element_type": "h2", "text": "ACCESS", "role": "見出し（英語）", "notes": "" },
+            { "element_id": "p4_acc_h2_jp", "element_type": "h3", "text": "アクセス", "role": "見出し（日本語）", "notes": "" }
+          ]
+        },
+        {
+          "section_id": "p4_contact",
+          "section_name": "contact",
+          "elements": [
+            { "element_id": "p4_cont_h2_en", "element_type": "h2", "text": "CONTACT", "role": "見出し（英語）", "notes": "" },
+            { "element_id": "p4_cont_h2_jp", "element_type": "h3", "text": "お問合せ", "role": "見出し（日本語）", "notes": "" },
+            { "element_id": "p4_cont_body", "element_type": "body", "text": "ご質問やご相談は、どうぞお気軽にお寄せ\nください。小さなことでも大歓迎です。", "role": "本文", "notes": "" },
+            { "element_id": "p4_cont_btn", "element_type": "button", "text": "GET IN TOUCH", "role": "CTA", "notes": "" }
+          ]
+        },
+        {
+          "section_id": "p4_footer",
+          "section_name": "footer",
+          "elements": [
+            { "element_id": "p4_foot_nav_1", "element_type": "nav_item", "text": "ABOUT US", "role": "フッターリンク", "notes": "" },
+            { "element_id": "p4_foot_nav_2", "element_type": "nav_item", "text": "SERVICE", "role": "フッターリンク", "notes": "" },
+            { "element_id": "p4_foot_nav_3", "element_type": "nav_item", "text": "COMPANY", "role": "フッターリンク", "notes": "" },
+            { "element_id": "p4_foot_nav_4", "element_type": "nav_item", "text": "RECRUIT", "role": "フッターリンク", "notes": "" },
+            { "element_id": "p4_foot_nav_5", "element_type": "nav_item", "text": "CONTACT", "role": "フッターリンク", "notes": "" }
+          ]
+        }
+      ]
+    },
+    {
+      "page_number": 5,
+      "sections": [
+        {
+          "section_id": "p5_header",
+          "section_name": "header",
+          "elements": [
+            { "element_id": "p5_nav_1", "element_type": "nav_item", "text": "ABOUT US", "role": "ナビゲーション", "notes": "" },
+            { "element_id": "p5_nav_2", "element_type": "nav_item", "text": "SERVICE", "role": "ナビゲーション", "notes": "" },
+            { "element_id": "p5_nav_3", "element_type": "nav_item", "text": "COMPANY", "role": "ナビゲーション", "notes": "" },
+            { "element_id": "p5_nav_4", "element_type": "nav_item", "text": "RECRUIT", "role": "ナビゲーション", "notes": "" },
+            { "element_id": "p5_nav_5", "element_type": "nav_item", "text": "CONTACT", "role": "ナビゲーション", "notes": "" }
+          ]
+        },
+        {
+          "section_id": "p5_hero",
+          "section_name": "hero",
+          "elements": [
+            { "element_id": "p5_hero_sub", "element_type": "h2", "text": "採用情報", "role": "サブタイトル", "notes": "" },
+            { "element_id": "p5_hero_h1", "element_type": "h1", "text": "RECRUIT", "role": "ページタイトル", "notes": "" }
+          ]
+        },
+        {
+          "section_id": "p5_culture",
+          "section_name": "recruit",
+          "elements": [
+            { "element_id": "p5_cult_h2_en", "element_type": "h2", "text": "OUR CULTURE", "role": "見出し（英語）", "notes": "" },
+            { "element_id": "p5_cult_h2_jp", "element_type": "h3", "text": "求める人物像", "role": "見出し（日本語）", "notes": "" },
+            { "element_id": "p5_cult_lead", "element_type": "body", "text": "私たちは、金型づくりを"技術の仕事"であると同時に、"人の姿勢が品質をつくる仕事"だと考えています。\n経験の有無よりも、次のような想いを持つ方と一緒に働きたいと思っています。", "role": "リード文", "notes": "" },
+            { "element_id": "p5_cult_01_num", "element_type": "h3", "text": "01", "role": "番号", "notes": "" },
+            { "element_id": "p5_cult_01_title", "element_type": "h4", "text": "技術を学ぶことを楽しめる方", "role": "小見出し", "notes": "" },
+            { "element_id": "p5_cult_01_body", "element_type": "body", "text": "金型製作には、精密さ・探求心・継続した学びが欠かせません。\n「知らないことを知るのが好き」「手を動かしながら成長したい」そんな方が、当社で大きく活躍できます。", "role": "本文", "notes": "" },
+            { "element_id": "p5_cult_02_num", "element_type": "h3", "text": "02", "role": "番号", "notes": "" },
+            { "element_id": "p5_cult_02_title", "element_type": "h4", "text": "誠実にものづくりと向き合える方", "role": "小見出し", "notes": "" },
+            { "element_id": "p5_cult_02_body", "element_type": "body", "text": "金型は、お客様の製品品質を左右する"原点"です。\n任された工程に責任を持ち、丁寧に、正確に取り組める姿勢を大切にしています。", "role": "本文", "notes": "" },
+            { "element_id": "p5_cult_03_num", "element_type": "h3", "text": "03", "role": "番号", "notes": "" },
+            { "element_id": "p5_cult_03_title", "element_type": "h4", "text": "チームで成果をつくることを大切にできる方", "role": "小見出し", "notes": "" },
+            { "element_id": "p5_cult_03_body", "element_type": "body", "text": "当社の仕事は、一人の力では完成しません。\n設計・加工・仕上げ・検査…すべてがつながることで、最高の品質が生まれます。\n互いを尊重し、協力し合える方を歓迎します。", "role": "本文", "notes": "" }
+          ]
+        },
+        {
+          "section_id": "p5_environment",
+          "section_name": "recruit",
+          "elements": [
+            { "element_id": "p5_env_h2_en", "element_type": "h2", "text": "ENVIRONMENT", "role": "見出し（英語）", "notes": "" },
+            { "element_id": "p5_env_h2_jp", "element_type": "h3", "text": "働く環境", "role": "見出し（日本語）", "notes": "" }
+          ]
+        },
+        {
+          "section_id": "p5_recruit_outline",
+          "section_name": "recruit",
+          "elements": [
+            { "element_id": "p5_rec_out_h2_en", "element_type": "h2", "text": "OUTLINE", "role": "見出し（英語）", "notes": "" },
+            { "element_id": "p5_rec_out_h2_jp", "element_type": "h3", "text": "募集要項", "role": "見出し（日本語）", "notes": "" },
+            { "element_id": "p5_rec_out_placeholder", "element_type": "body", "text": "※エンゲージに掲載の募集要項を入力", "role": "指示書き／ダミーテキスト", "notes": "" },
+            { "element_id": "p5_rec_out_btn", "element_type": "button", "text": "ENTRY", "role": "CTA", "notes": "" }
+          ]
+        },
+        {
+          "section_id": "p5_contact",
+          "section_name": "contact",
+          "elements": [
+            { "element_id": "p5_cont_h2_en", "element_type": "h2", "text": "CONTACT", "role": "見出し（英語）", "notes": "" },
+            { "element_id": "p5_cont_h2_jp", "element_type": "h3", "text": "お問合せ", "role": "見出し（日本語）", "notes": "" },
+            { "element_id": "p5_cont_body", "element_type": "body", "text": "ご質問やご相談は、どうぞお気軽にお寄せ\nください。小さなことでも大歓迎です。", "role": "本文", "notes": "" },
+            { "element_id": "p5_cont_btn", "element_type": "button", "text": "GET IN TOUCH", "role": "CTA", "notes": "" }
+          ]
+        },
+        {
+          "section_id": "p5_footer",
+          "section_name": "footer",
+          "elements": [
+            { "element_id": "p5_foot_nav_1", "element_type": "nav_item", "text": "ABOUT US", "role": "フッターリンク", "notes": "" },
+            { "element_id": "p5_foot_nav_2", "element_type": "nav_item", "text": "SERVICE", "role": "フッターリンク", "notes": "" },
+            { "element_id": "p5_foot_nav_3", "element_type": "nav_item", "text": "COMPANY", "role": "フッターリンク", "notes": "" },
+            { "element_id": "p5_foot_nav_4", "element_type": "nav_item", "text": "RECRUIT", "role": "フッターリンク", "notes": "" },
+            { "element_id": "p5_foot_nav_5", "element_type": "nav_item", "text": "CONTACT", "role": "フッターリンク", "notes": "" }
+          ]
+        }
+      ]
+    }
+  ]
+}
