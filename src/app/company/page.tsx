@@ -1,13 +1,8 @@
-import type { Metadata } from "next";
+"use client";
+
 import Image from "next/image";
 import ContactBanner from "@/components/ContactBanner";
 import { FadeInUp, StaggerContainer } from "@/components/animations";
-
-export const metadata: Metadata = {
-  title: "COMPANY",
-  description:
-    "株式会社竹内金型製作所の会社概要。昭和45年創業、愛知県あま市の金型メーカー。代表挨拶・会社概要・アクセス。",
-};
 
 const outlineItems = [
   { label: "社名", value: "株式会社竹内金型製作所" },

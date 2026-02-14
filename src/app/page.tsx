@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import ContactBanner from "@/components/ContactBanner";
 import { FadeInUp, FadeInImage, StaggerContainer, AnimatedLink } from "@/components/animations";

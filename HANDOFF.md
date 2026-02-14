@@ -931,14 +931,14 @@ SEO・LLMOガイドを全テンプレートに展開し、制作ワークフロ�
 
 ### 15.2 アニメーション実装
 
-> **ステータス: 要修正**
+> **ステータス: 調査完了・方針決定待ち**
 
 #### ゴール
 
 - スクロールに連動して各セクションがフェードインするアニメーション
 - 画面外の要素は、スクロールして画面に入ったときにアニメーション開始
 
-#### 実施したこと（2026-02-14）
+#### 実施したこと（2026-02-14 セッション1）
 
 1. **共通コンポーネント作成** (`src/components/animations/`)
    - `FadeInUp.tsx` - スクロール連動フェードイン+スライドアップ
@@ -948,40 +948,99 @@ SEO・LLMOガイドを全テンプレートに展開し、制作ワークフロ�
    - `index.ts` - エクスポート
 
 2. **全ページに適用**
-   - TOP (`src/app/page.tsx`)
-   - About (`src/app/about/page.tsx`)
-   - Service (`src/app/service/page.tsx`)
-   - Company (`src/app/company/page.tsx`)
-   - Recruit (`src/app/recruit/page.tsx`)
-   - Contact (`src/app/contact/page.tsx`)
-   - ContactBanner (`src/components/ContactBanner.tsx`)
 
 3. **ビルド成功** (`478e23f`)
 
-#### 現在の問題（確認済み）
+#### 実施したこと（2026-02-14 セッション2）
 
-- **Recruitページ: 意図通りに動作**
-- **他のページ: 動作していない**
+1. **原因調査完了**
 
-#### ページ構成の違い
+2. **方針A実装: layout.tsx + "use client" page.tsx 構造に変更**
+   - 各ページにlayout.tsxを作成（metadataを移動）
+   - 各page.tsxに"use client"を追加
 
-| ページ | コンポーネントタイプ |
-|--------|---------------------|
-| TOP | Server Component |
-| About | Server Component |
-| Service | Server Component |
-| Company | Server Component |
-| **Recruit** | **Client Component (`"use client"`)** |
-| Contact | Server Component |
+   **変更したファイル:**
+   - `src/app/page.tsx` - "use client"追加
+   - `src/app/about/layout.tsx` - 新規作成（metadata）
+   - `src/app/about/page.tsx` - "use client"追加、metadata削除
+   - `src/app/service/layout.tsx` - 新規作成（metadata）
+   - `src/app/service/page.tsx` - "use client"追加、metadata削除
+   - `src/app/company/layout.tsx` - 新規作成（metadata）
+   - `src/app/company/page.tsx` - "use client"追加、metadata削除
+   - `src/app/contact/layout.tsx` - 新規作成（metadata）
+   - `src/app/contact/page.tsx` - "use client"追加、metadata削除
+
+#### 問題の詳細（調査結果）
+
+**問題1: アニメーションが全て同時に発火する**
+
+元々の問題は「Recruitページ以外でアニメーションが動作しない」ではなく、
+**「ページを開いた瞬間に全セクションのアニメーションが同時に発火し、スクロールする頃には全て完了済み」** だった。
+
+**原因:**
+- Server Componentページでは、HTMLがサーバーで完全にレンダリングされる
+- クライアントでハイドレーション時、全FadeInUpのuseEffectが「同時に」発火
+- 全IntersectionObserverが「同時に」observe()を呼ぶ
+- 結果、全アニメーションが同時開始
+
+**Recruitページが正しく動作する理由:**
+- ページ全体がClient Component（`"use client"`）
+- Reactが段階的にコンポーネントをレンダリング
+- 各FadeInUpが自然なタイミングでマウント
+- IntersectionObserverが正しく機能
+
+**問題2: ページ遷移時のスクロール位置問題（新規発見）**
+
+方針A実装後に発見された問題:
+- ヘッダーのリンクをクリックしてページ遷移すると
+- **前のページのスクロール位置から表示される**
+- その後、ヒーローセクションまでスクロールアップする
+- この間にアニメーションが発火してしまう
+
+**これは通常のNext.jsの動作ではない。原因不明。**
+
+#### yumesutaHPとの比較
+
+`/mnt/c/yumesutaHP` でも同じ構造（layout.tsx + "use client" page.tsx）を使用しているが、スクロール問題は発生していない。
+
+**違い:**
+- yumesutaHP: `useScrollAnimation`フック + CSSクラス（`scroll-fade-up`）でアニメーション
+- takeuchimold: 各FadeInUpコンポーネントが個別にIntersectionObserverを持つ
+
+**仮説:**
+- 問題は構造ではなく、アニメーション実装方法にある可能性
+- FadeInUpの初期状態（opacity: 0）がブラウザのスクロール位置計算に影響？
+
+#### 現在のページ構成
+
+| ページ | layout.tsx | page.tsx | コンポーネントタイプ |
+|--------|-----------|----------|---------------------|
+| TOP | ルート共有 | "use client" | Client Component |
+| About | あり | "use client" | Client Component |
+| Service | あり | "use client" | Client Component |
+| Company | あり | "use client" | Client Component |
+| Contact | あり | "use client" | Client Component |
+| Recruit | あり（元から） | "use client" | Client Component |
 
 #### 次世代セッションでやること
 
-1. 原因を特定
-2. 修正
+1. **スクロール位置問題の原因調査**
+   - なぜページ遷移時に前のスクロール位置が維持されるのか
+   - yumesutaHPでは問題がないのに、なぜtakeuchimoldでは問題が起きるのか
+
+2. **方針の検討**
+   - 方針A（現在の実装）を維持してスクロール問題を解決する
+   - または、アニメーション実装方法をyumesutaHP方式に変更する
+   - または、方針Aを元に戻して別のアプローチを検討する
+
+3. **検証**
+   - ビルドしてブラウザで実際に動作確認
 
 #### 関連ファイル
 
+- `src/components/animations/` - アニメーションコンポーネント
 - `doc/ANIMATION_PLAN.md` - アニメーション計画書
+- `/mnt/c/yumesutaHP/src/hooks/useScrollAnimation.ts` - 参考実装
 
 ---
 

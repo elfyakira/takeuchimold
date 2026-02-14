@@ -1,13 +1,8 @@
-import type { Metadata } from "next";
+"use client";
+
 import Image from "next/image";
 import ContactBanner from "@/components/ContactBanner";
 import { FadeInUp, StaggerContainer } from "@/components/animations";
-
-export const metadata: Metadata = {
-  title: "SERVICE",
-  description:
-    "プラスチック射出成型用金型の設計・製作。自動車部品・家電・OA機器等、幅広い製品に対応する金型メーカー。",
-};
 
 const equipmentData = [
   { name: "高速マシニングセンタ", maker: "牧野フライス", model: "V99L", size: "2300×1000×650" },
