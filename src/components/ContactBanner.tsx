@@ -16,7 +16,7 @@ export default function ContactBanner() {
         <div className="max-w-container mx-auto px-6 lg:px-12 flex flex-col lg:flex-row lg:justify-between lg:items-end gap-8">
           {/* Left */}
           <div>
-            <h2 className="font-en text-section-en-sp lg:text-section-en text-white tracking-wider">
+            <h2 className="font-en text-[64px] lg:text-[96px] font-bold text-white tracking-wider">
               CONTACT
             </h2>
             <p className="text-section-jp text-white/60 mt-1">お問合せ</p>
@@ -27,11 +27,11 @@ export default function ContactBanner() {
             </p>
           </div>
 
-          {/* Right - CTA Button */}
+          {/* Right - CTA Link */}
           <div className="lg:text-right">
             <Link
               href="/contact"
-              className="inline-block px-10 py-4 border border-white bg-transparent text-white text-sm font-bold tracking-wider transition-colors hover:bg-white hover:text-black"
+              className="inline-block text-[48px] font-bold text-white underline underline-offset-8 transition-colors hover:opacity-70"
             >
               GET IN TOUCH
             </Link>

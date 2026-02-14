@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <main>
       {/* ==================== 1. HERO (Video Background) ==================== */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative h-screen flex items-center justify-center overflow-hidden pt-24 lg:pt-32">
         <video
           autoPlay
           muted
@@ -18,13 +18,13 @@ export default function Home() {
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30" />
         <div className="relative text-center text-white px-4">
-          <h1 className="font-serif-jp text-hero-title-sp lg:text-hero-title mb-6">
-            原点を、極める
+          <h1 className="text-[72px] lg:text-[128px] leading-none mb-8" style={{ fontFamily: 'var(--font-serif-jp)' }}>
+            原点を、<br className="lg:hidden" /><span className="inline-block pl-12 lg:pl-0" style={{ marginLeft: '-0.3em' }}>極める</span>
           </h1>
-          <p className="text-body lg:text-body-lg text-white/80 max-w-xl mx-auto leading-relaxed">
+          <p className="text-[18px] lg:text-[22px] text-white/80 max-w-4xl mx-auto leading-relaxed">
             金型はすべての製品の原点。
             <br />
-            私たちはその重要性を胸に、日夜技術を磨き、信頼される品質を届けています。
+            私たちはその重要性を胸に、日夜技術を磨き、<br className="lg:hidden" />信頼される品質を届けています。
           </p>
         </div>
       </section>
@@ -40,7 +40,7 @@ export default function Home() {
         <div className="relative py-section-y-sp lg:py-section-y">
           <div className="max-w-container mx-auto px-6 lg:px-12">
             <div className="max-w-2xl">
-              <h2 className="font-serif-jp text-[28px] lg:text-[36px] font-bold text-white mb-8">
+              <h2 className="font-serif-jp text-[32px] lg:text-[42px] font-bold text-white mb-8">
                 原点
               </h2>
               <p className="text-body text-white/80 leading-relaxed mb-10">
@@ -50,7 +50,7 @@ export default function Home() {
                 行き着く...まさに金型は「モノづくり」の原点です。
               </p>
 
-              <h2 className="font-serif-jp text-[28px] lg:text-[36px] font-bold text-white mb-8">
+              <h2 className="font-serif-jp text-[32px] lg:text-[42px] font-bold text-white mb-8">
                 極める
               </h2>
               <p className="text-body text-white/80 leading-relaxed mb-10">
@@ -60,7 +60,7 @@ export default function Home() {
 
               <Link
                 href="/about"
-                className="inline-block text-white underline underline-offset-4 transition-colors hover:text-white/70"
+                className="inline-block text-[48px] font-bold text-white underline underline-offset-4 transition-colors hover:text-white/70"
               >
                 Learn More
               </Link>
@@ -75,10 +75,10 @@ export default function Home() {
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
             {/* Left: Text */}
             <div className="lg:w-1/2">
-              <h2 className="font-en text-section-en-sp lg:text-section-en text-primary tracking-wider">
+              <h2 className="font-en text-[64px] lg:text-[96px] font-bold text-[#004888] tracking-wider">
                 SERVICE
               </h2>
-              <p className="text-section-jp text-text-muted mt-1 mb-8">
+              <p className="text-section-jp text-[#004888] mt-1 mb-8">
                 事業紹介
               </p>
               <p className="text-body text-text-primary leading-relaxed mb-8">
@@ -88,7 +88,7 @@ export default function Home() {
               </p>
               <Link
                 href="/service"
-                className="inline-block text-primary underline underline-offset-4 transition-colors hover:text-primary-dark"
+                className="inline-block text-[48px] font-bold text-[#004888] underline underline-offset-8 transition-colors hover:opacity-70"
               >
                 Learn More
               </Link>
@@ -137,7 +137,7 @@ export default function Home() {
             </div>
             {/* Right: Text */}
             <div className="lg:w-1/2">
-              <h2 className="font-en text-section-en-sp lg:text-section-en text-white tracking-wider">
+              <h2 className="font-en text-[64px] lg:text-[96px] font-bold text-white tracking-wider">
                 COMPANY
               </h2>
               <p className="text-section-jp text-white/60 mt-1 mb-8">
@@ -150,7 +150,7 @@ export default function Home() {
               </p>
               <Link
                 href="/company"
-                className="inline-block text-white underline underline-offset-4 transition-colors hover:text-white/70"
+                className="inline-block text-[48px] font-bold text-white underline underline-offset-4 transition-colors hover:text-white/70"
               >
                 Learn More
               </Link>
@@ -166,10 +166,10 @@ export default function Home() {
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 mb-10">
             {/* Left: Heading + Text */}
             <div className="lg:w-1/2">
-              <h2 className="font-en text-section-en-sp lg:text-section-en text-primary tracking-wider">
+              <h2 className="font-en text-[64px] lg:text-[96px] font-bold text-[#004888] tracking-wider">
                 RECRUIT
               </h2>
-              <p className="text-section-jp text-text-muted mt-1 mb-8">
+              <p className="text-section-jp text-[#004888] mt-1 mb-8">
                 採用情報
               </p>
               <p className="text-body text-text-primary leading-relaxed">
@@ -182,7 +182,7 @@ export default function Home() {
               </p>
             </div>
             {/* Right: Link List */}
-            <div className="lg:w-1/2 flex flex-col justify-center gap-6">
+            <div className="lg:w-1/2 flex flex-col justify-start gap-6 pt-16 lg:pt-24">
               {[
                 { en: "OUR CULTURE", jp: "求める人物像", href: "/recruit#culture" },
                 { en: "ENVIRONMENT", jp: "働く環境", href: "/recruit#environment" },
@@ -191,27 +191,16 @@ export default function Home() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="group flex items-center justify-between border-b border-border pb-4 transition-colors hover:border-primary"
+                  className="block border-b border-border pb-4 transition-colors hover:border-[#004888]"
                 >
-                  <div>
-                    <span className="block text-sm font-bold text-primary tracking-wider">
-                      {item.en}
-                    </span>
-                    <span className="block text-body-sm text-text-secondary mt-1">
-                      {item.jp}
-                    </span>
-                  </div>
-                  <span className="text-primary transition-transform group-hover:translate-x-1">
-                    &rarr;
+                  <span className="block text-[24px] lg:text-[32px] font-bold text-[#004888] tracking-wider">
+                    {item.en}
+                  </span>
+                  <span className="block text-body-sm text-[#004888] mt-1">
+                    {item.jp}
                   </span>
                 </Link>
               ))}
-              <Link
-                href="/recruit"
-                className="inline-block text-primary underline underline-offset-4 transition-colors hover:text-primary-dark mt-2"
-              >
-                VIEW ALL
-              </Link>
             </div>
           </div>
           {/* Bottom: Full Width Image */}
@@ -233,14 +222,14 @@ export default function Home() {
           {/* Header row */}
           <div className="flex items-end justify-between mb-10">
             <div>
-              <h2 className="font-en text-section-en-sp lg:text-section-en text-primary tracking-wider">
+              <h2 className="font-en text-[64px] lg:text-[96px] font-bold text-[#004888] tracking-wider">
                 EQUIPMENT
               </h2>
-              <p className="text-section-jp text-text-muted mt-1">設備</p>
+              <p className="text-section-jp text-[#004888] mt-1">設備</p>
             </div>
             <Link
               href="/service#equipment"
-              className="text-primary underline underline-offset-4 transition-colors hover:text-primary-dark"
+              className="text-[48px] font-bold text-[#004888] underline underline-offset-8 transition-colors hover:opacity-70"
             >
               VIEW ALL
             </Link>
