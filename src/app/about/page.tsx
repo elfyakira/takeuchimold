@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import ContactBanner from "@/components/ContactBanner";
+import { FadeInUp, StaggerContainer } from "@/components/animations";
 
 export const metadata: Metadata = {
   title: "ABOUT US",
@@ -43,17 +44,23 @@ export default function AboutPage() {
         />
         <div className="absolute inset-0 bg-black/40" />
         <div className="relative max-w-container mx-auto px-6 lg:px-12 w-full">
-          <h1 className="font-en text-[64px] lg:text-[120px] font-bold text-white tracking-wider mb-8">
-            ABOUT US
-          </h1>
-          <h2 className="text-[20px] lg:text-[28px] font-bold text-white mb-6">
-            品質をつくるのは、技術と設備、そして姿勢です。
-          </h2>
-          <p className="text-body lg:text-[18px] text-white/90 max-w-2xl leading-relaxed">
-            私たちは長年培ってきた職人技術と最新鋭の設備を軸に、<br />
-            お客様が求める品質・精度・再現性を確実に実現するため、<br />
-            工程ごとの最適化と技術力の向上に継続して取り組んでいます。
-          </p>
+          <FadeInUp duration={800}>
+            <h1 className="font-en text-[64px] lg:text-[120px] font-bold text-white tracking-wider mb-8">
+              ABOUT US
+            </h1>
+          </FadeInUp>
+          <FadeInUp delay={200} duration={800}>
+            <h2 className="text-[20px] lg:text-[28px] font-bold text-white mb-6">
+              品質をつくるのは、技術と設備、そして姿勢です。
+            </h2>
+          </FadeInUp>
+          <FadeInUp delay={400} duration={800}>
+            <p className="text-body lg:text-[18px] text-white/90 max-w-2xl leading-relaxed">
+              私たちは長年培ってきた職人技術と最新鋭の設備を軸に、<br />
+              お客様が求める品質・精度・再現性を確実に実現するため、<br />
+              工程ごとの最適化と技術力の向上に継続して取り組んでいます。
+            </p>
+          </FadeInUp>
         </div>
       </section>
 
@@ -61,42 +68,50 @@ export default function AboutPage() {
       <section className="bg-[#111111] text-white py-section-y-sp lg:py-section-y">
         <div className="max-w-container mx-auto px-6 lg:px-12">
           {/* Section Header */}
-          <div className="mb-16 lg:mb-24">
-            <h2 className="font-en text-[40px] lg:text-[56px] font-bold text-white tracking-wider">
-              FEATURE
-            </h2>
-            <p className="text-section-jp text-white/60 mt-1">
-              3つの強み
-            </p>
-          </div>
+          <FadeInUp>
+            <div className="mb-16 lg:mb-24">
+              <h2 className="font-en text-[40px] lg:text-[56px] font-bold text-white tracking-wider">
+                FEATURE
+              </h2>
+              <p className="text-section-jp text-white/60 mt-1">
+                3つの強み
+              </p>
+            </div>
+          </FadeInUp>
 
           {/* 3 Features */}
           <div className="space-y-24 lg:space-y-32">
-            {features.map((f) => (
+            {features.map((f, index) => (
               <div key={f.num}>
                 {/* Number + Title Row */}
-                <div className="flex items-baseline gap-4 lg:gap-6 mb-6">
-                  <span className="font-en text-[48px] lg:text-[64px] font-bold text-white leading-none">
-                    {f.num}
-                  </span>
-                  <h3 className="text-[20px] lg:text-[24px] font-bold text-white">
-                    {f.title}
-                  </h3>
-                </div>
+                <FadeInUp delay={index * 100}>
+                  <div className="flex items-baseline gap-4 lg:gap-6 mb-6">
+                    <span className="font-en text-[48px] lg:text-[64px] font-bold text-white leading-none">
+                      {f.num}
+                    </span>
+                    <h3 className="text-[20px] lg:text-[24px] font-bold text-white">
+                      {f.title}
+                    </h3>
+                  </div>
+                </FadeInUp>
                 {/* Description Text */}
-                <p className="text-body text-white/80 leading-relaxed mb-8">
-                  {f.body}
-                </p>
+                <FadeInUp delay={index * 100 + 100}>
+                  <p className="text-body text-white/80 leading-relaxed mb-8">
+                    {f.body}
+                  </p>
+                </FadeInUp>
                 {/* Image - Right Aligned */}
-                <div className="flex justify-end">
-                  <Image
-                    src={f.image}
-                    alt={f.title}
-                    width={600}
-                    height={450}
-                    className="w-full lg:w-[60%] aspect-[4/3] object-cover"
-                  />
-                </div>
+                <FadeInUp delay={index * 100 + 200}>
+                  <div className="flex justify-end overflow-hidden">
+                    <Image
+                      src={f.image}
+                      alt={f.title}
+                      width={600}
+                      height={450}
+                      className="w-full lg:w-[60%] aspect-[4/3] object-cover transition-transform duration-300 hover:scale-105"
+                    />
+                  </div>
+                </FadeInUp>
               </div>
             ))}
           </div>

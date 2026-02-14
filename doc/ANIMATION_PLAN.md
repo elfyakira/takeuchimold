@@ -288,34 +288,37 @@ src/components/animations/
 
 ## 7. 実装チェックリスト
 
+> **2026-02-14 実装完了**
+
 ### Phase 1: 共通コンポーネント作成
-- [ ] `src/components/animations/FadeInUp.tsx`
-- [ ] `src/components/animations/FadeInImage.tsx`
-- [ ] `src/components/animations/StaggerContainer.tsx`
-- [ ] `src/components/animations/AnimatedLink.tsx`
+- [x] `src/components/animations/FadeInUp.tsx`
+- [x] `src/components/animations/FadeInImage.tsx`
+- [x] `src/components/animations/StaggerContainer.tsx`
+- [x] `src/components/animations/AnimatedLink.tsx`
+- [x] `src/components/animations/index.ts`（エクスポート）
 
 ### Phase 2: TOPページ適用
-- [ ] HEROセクション
-- [ ] CONCEPTセクション
-- [ ] SERVICEセクション
-- [ ] COMPANYセクション
-- [ ] RECRUITセクション
-- [ ] EQUIPMENTセクション
+- [x] HEROセクション
+- [x] CONCEPTセクション
+- [x] SERVICEセクション
+- [x] COMPANYセクション
+- [x] RECRUITセクション
+- [x] EQUIPMENTセクション
 
 ### Phase 3: 下層ページ適用
-- [ ] About Us
-- [ ] Service
-- [ ] Company
-- [ ] Recruit
-- [ ] Contact
+- [x] About Us
+- [x] Service
+- [x] Company
+- [x] Recruit
+- [x] Contact
 
 ### Phase 4: 共通コンポーネント適用
-- [ ] Header.tsx
-- [ ] Footer.tsx
-- [ ] ContactBanner.tsx
+- [ ] Header.tsx（既存のトランジションで十分）
+- [ ] Footer.tsx（シンプルなためスキップ）
+- [x] ContactBanner.tsx
 
 ### Phase 5: 検証
 - [ ] パフォーマンス確認（Lighthouse）
 - [ ] モバイル動作確認
-- [ ] `prefers-reduced-motion` 対応確認
-- [ ] ビルド確認
+- [x] `prefers-reduced-motion` 対応確認（FadeInUp, FadeInImage, StaggerContainer に実装済み）
+- [x] ビルド確認

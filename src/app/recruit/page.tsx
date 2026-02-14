@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import ContactBanner from "@/components/ContactBanner";
+import { FadeInUp, StaggerContainer } from "@/components/animations";
 
 const cultureItems = [
   {
@@ -185,7 +186,7 @@ function PositionModal({
 }) {
   return (
     <div
-      className="fixed inset-0 z-[1001] flex items-center justify-center p-4"
+      className="fixed inset-0 z-[1001] flex items-center justify-center p-4 animate-fade-in"
       onClick={onClose}
     >
       {/* Overlay */}
@@ -193,7 +194,7 @@ function PositionModal({
 
       {/* Modal */}
       <div
-        className="relative bg-white w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-lg"
+        className="relative bg-white w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-lg animate-scale-in"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
@@ -364,10 +365,12 @@ export default function RecruitPage() {
       {/* Page Header */}
       <section className="pt-24 lg:pt-28 pb-6 lg:pb-8">
         <div className="max-w-container mx-auto px-6 lg:px-12">
-          <p className="text-section-jp text-[#004888]">採用情報</p>
-          <h1 className="font-en text-[64px] lg:text-[96px] font-bold text-[#004888] tracking-wider leading-none">
-            RECRUIT
-          </h1>
+          <FadeInUp>
+            <p className="text-section-jp text-[#004888]">採用情報</p>
+            <h1 className="font-en text-[64px] lg:text-[96px] font-bold text-[#004888] tracking-wider leading-none">
+              RECRUIT
+            </h1>
+          </FadeInUp>
         </div>
       </section>
 
@@ -382,43 +385,49 @@ export default function RecruitPage() {
       {/* Culture */}
       <section id="culture" className="bg-[#004888] text-white py-section-y-sp lg:py-section-y">
         <div className="max-w-container mx-auto px-6 lg:px-12">
-          <h2 className="font-en text-[64px] lg:text-[96px] font-bold text-white tracking-wider">
-            OUR CULTURE
-          </h2>
-          <p className="text-section-jp text-white mt-1 mb-6">
-            求める人物像
-          </p>
-          <p className="text-body text-white max-w-3xl leading-relaxed mb-16">
-            私たちは、金型づくりを&ldquo;技術の仕事&rdquo;であると同時に、&ldquo;人の姿勢が品質をつくる仕事&rdquo;だと考えています。
-            経験の有無よりも、次のような想いを持つ方と一緒に働きたいと思っています。
-          </p>
+          <FadeInUp>
+            <h2 className="font-en text-[64px] lg:text-[96px] font-bold text-white tracking-wider">
+              OUR CULTURE
+            </h2>
+            <p className="text-section-jp text-white mt-1 mb-6">
+              求める人物像
+            </p>
+          </FadeInUp>
+          <FadeInUp delay={100}>
+            <p className="text-body text-white max-w-3xl leading-relaxed mb-16">
+              私たちは、金型づくりを&ldquo;技術の仕事&rdquo;であると同時に、&ldquo;人の姿勢が品質をつくる仕事&rdquo;だと考えています。
+              経験の有無よりも、次のような想いを持つ方と一緒に働きたいと思っています。
+            </p>
+          </FadeInUp>
 
           <div className="space-y-16">
-            {cultureItems.map((item) => (
-              <div key={item.num}>
-                <div className="flex items-baseline gap-4 mb-4">
-                  <span className="font-en text-[48px] lg:text-[64px] font-bold text-white">
-                    {item.num}
-                  </span>
-                  <h3 className="text-[24px] lg:text-[32px] font-bold text-white">
-                    {item.title}
-                  </h3>
-                </div>
-                <div className="max-w-3xl">
-                  <p className="text-body text-white leading-relaxed">
-                    {item.body}
-                  </p>
-                  <div className="flex justify-end mt-6">
-                    <Image
-                      src={item.icon}
-                      alt=""
-                      width={100}
-                      height={100}
-                      className="w-[80px] h-[80px] lg:w-[100px] lg:h-[100px] object-contain"
-                    />
+            {cultureItems.map((item, index) => (
+              <FadeInUp key={item.num} delay={index * 100 + 200}>
+                <div>
+                  <div className="flex items-baseline gap-4 mb-4">
+                    <span className="font-en text-[48px] lg:text-[64px] font-bold text-white">
+                      {item.num}
+                    </span>
+                    <h3 className="text-[24px] lg:text-[32px] font-bold text-white">
+                      {item.title}
+                    </h3>
+                  </div>
+                  <div className="max-w-3xl">
+                    <p className="text-body text-white leading-relaxed">
+                      {item.body}
+                    </p>
+                    <div className="flex justify-end mt-6">
+                      <Image
+                        src={item.icon}
+                        alt=""
+                        width={100}
+                        height={100}
+                        className="w-[80px] h-[80px] lg:w-[100px] lg:h-[100px] object-contain"
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
+              </FadeInUp>
             ))}
           </div>
         </div>
@@ -427,33 +436,41 @@ export default function RecruitPage() {
       {/* Environment */}
       <section id="environment" className="py-section-y-sp lg:py-section-y">
         <div className="max-w-container mx-auto px-6 lg:px-12">
-          <div className="text-center mb-12">
-            <h2 className="font-en text-[40px] lg:text-[56px] font-bold text-[#004888] tracking-wider">
-              ENVIRONMENT
-            </h2>
-            <p className="text-section-jp text-[#004888] mt-1">働く環境</p>
-          </div>
-          <Image
-            src="/images/recruit-main.jpg"
-            alt="働く環境"
-            width={1200}
-            height={600}
-            className="w-full h-[300px] lg:h-[500px] object-cover"
-          />
+          <FadeInUp>
+            <div className="text-center mb-12">
+              <h2 className="font-en text-[40px] lg:text-[56px] font-bold text-[#004888] tracking-wider">
+                ENVIRONMENT
+              </h2>
+              <p className="text-section-jp text-[#004888] mt-1">働く環境</p>
+            </div>
+          </FadeInUp>
+          <FadeInUp delay={100}>
+            <div className="overflow-hidden">
+              <Image
+                src="/images/recruit-main.jpg"
+                alt="働く環境"
+                width={1200}
+                height={600}
+                className="w-full h-[300px] lg:h-[500px] object-cover transition-transform duration-300 hover:scale-105"
+              />
+            </div>
+          </FadeInUp>
         </div>
       </section>
 
       {/* Requirements - Position Cards */}
       <section id="requirements" className="py-section-y-sp lg:py-section-y bg-[#F9F9F9]">
         <div className="max-w-container mx-auto px-6 lg:px-12">
-          <div className="text-center mb-12">
-            <h2 className="font-en text-[40px] lg:text-[56px] font-bold text-[#004888] tracking-wider">
-              OUTLINE
-            </h2>
-            <p className="text-section-jp text-[#004888] mt-1">募集職種</p>
-          </div>
+          <FadeInUp>
+            <div className="text-center mb-12">
+              <h2 className="font-en text-[40px] lg:text-[56px] font-bold text-[#004888] tracking-wider">
+                OUTLINE
+              </h2>
+              <p className="text-section-jp text-[#004888] mt-1">募集職種</p>
+            </div>
+          </FadeInUp>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8" staggerDelay={100}>
             {positions.map((position) => (
               <button
                 key={position.id}
@@ -514,23 +531,25 @@ export default function RecruitPage() {
                 </div>
               </button>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* Entry CTA */}
       <section className="py-10 lg:py-16">
-        <div className="text-center">
-          <p className="text-gray-600 mb-4">
-            上記以外の職種についてもお気軽にお問い合わせください
-          </p>
-          <Link
-            href="/contact#inquiry"
-            className="inline-block w-[300px] h-[60px] leading-[60px] bg-[#004888] text-white text-[20px] font-bold tracking-wider text-center transition-colors hover:bg-[#003366]"
-          >
-            ENTRY
-          </Link>
-        </div>
+        <FadeInUp>
+          <div className="text-center">
+            <p className="text-gray-600 mb-4">
+              上記以外の職種についてもお気軽にお問い合わせください
+            </p>
+            <Link
+              href="/contact#inquiry"
+              className="inline-block w-[300px] h-[60px] leading-[60px] bg-[#004888] text-white text-[20px] font-bold tracking-wider text-center transition-colors hover:bg-[#003366]"
+            >
+              ENTRY
+            </Link>
+          </div>
+        </FadeInUp>
       </section>
 
       <ContactBanner />
@@ -542,6 +561,24 @@ export default function RecruitPage() {
           onClose={() => setSelectedPosition(null)}
         />
       )}
+
+      {/* Modal Animation Styles */}
+      <style jsx global>{`
+        @keyframes fade-in {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes scale-in {
+          from { opacity: 0; transform: scale(0.95); }
+          to { opacity: 1; transform: scale(1); }
+        }
+        .animate-fade-in {
+          animation: fade-in 0.2s ease-out;
+        }
+        .animate-scale-in {
+          animation: scale-in 0.3s ease-out;
+        }
+      `}</style>
     </main>
   );
 }
