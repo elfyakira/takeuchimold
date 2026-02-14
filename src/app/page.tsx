@@ -236,11 +236,15 @@ export default function Home() {
           </div>
           {/* 3-column grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {[1, 2, 3].map((n) => (
+            {[
+              { n: 1, alt: "高速マシニングセンタによる精密加工" },
+              { n: 2, alt: "NC放電加工機での金型加工" },
+              { n: 3, alt: "ワイヤーカット放電加工機" },
+            ].map(({ n, alt }) => (
               <Image
                 key={n}
                 src={`/images/equip-${n}.jpg`}
-                alt={`設備${n}`}
+                alt={alt}
                 width={400}
                 height={300}
                 className="w-full h-auto object-cover aspect-[4/3]"

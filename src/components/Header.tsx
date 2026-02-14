@@ -3,13 +3,21 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { company, contact, images, navigation } from "@/lib/site";
 
 const navItems = navigation.main;
 
+// Pages with white background hero (blue title style)
+const whiteBgPages = ["/service", "/company", "/contact", "/recruit"];
+
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  // Check if current page has white background hero
+  const isWhiteBgPage = whiteBgPages.includes(pathname);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,15 +59,45 @@ export default function Header() {
           </Link>
 
           <nav className="flex items-center gap-8">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-nav text-white uppercase tracking-wider transition-colors duration-200 hover:text-white/70"
-              >
-                {item.label}
-              </Link>
-            ))}
+            {navItems.map((item, index) => {
+              const isActive = pathname === item.href;
+              // Text color logic:
+              // - Active: always blue
+              // - Scrolled: white
+              // - White bg page (not scrolled): black
+              // - Dark bg page (not scrolled): white
+              const textColorClass = isActive
+                ? "text-[#004888]"
+                : isScrolled
+                  ? "text-white hover:text-white/70"
+                  : isWhiteBgPage
+                    ? "text-text-primary hover:text-text-primary/70"
+                    : "text-white hover:text-white/70";
+
+              // Separator color
+              const separatorColorClass = isScrolled
+                ? "text-white/50"
+                : isWhiteBgPage
+                  ? "text-text-primary/30"
+                  : "text-white/50";
+
+              // Add separator before CONTACT (last item)
+              const isLastItem = index === navItems.length - 1;
+
+              return (
+                <div key={item.href} className="flex items-center gap-8">
+                  {isLastItem && (
+                    <span className={`text-[15px] ${separatorColorClass}`}>|</span>
+                  )}
+                  <Link
+                    href={item.href}
+                    className={`text-[15px] font-medium uppercase tracking-wider transition-colors duration-200 ${textColorClass}`}
+                  >
+                    {item.label}
+                  </Link>
+                </div>
+              );
+            })}
           </nav>
         </div>
       </header>
@@ -119,16 +157,21 @@ export default function Header() {
         aria-label="モバイルナビゲーション"
       >
         <div className="pt-16">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="block h-14 leading-[56px] px-6 text-sm font-bold text-text-primary border-b border-gray-100 tracking-wider transition-colors hover:text-primary"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {navItems.map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`block h-14 leading-[56px] px-6 text-sm font-bold border-b border-gray-100 tracking-wider transition-colors hover:text-primary ${
+                  isActive ? "text-[#004888]" : "text-text-primary"
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
           {contact.phone && (
             <div className="px-6 pt-6">
               <a

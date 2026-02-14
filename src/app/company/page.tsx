@@ -27,34 +27,30 @@ export default function CompanyPage() {
   return (
     <main>
       {/* Page Header */}
-      <section className="pt-32 lg:pt-40 pb-8 lg:pb-12">
+      <section className="pt-24 lg:pt-28 pb-6 lg:pb-8">
         <div className="max-w-container mx-auto px-6 lg:px-12">
-          <p className="text-section-jp text-text-muted">会社案内</p>
-          <h1 className="font-en text-[40px] lg:text-[64px] font-bold text-primary tracking-wider">
+          <p className="text-section-jp text-[#004888]">会社案内</p>
+          <h1 className="font-en text-[64px] lg:text-[96px] font-bold text-[#004888] tracking-wider leading-none">
             COMPANY
           </h1>
         </div>
       </section>
 
-      {/* Hero Image */}
-      <section>
-        <Image
-          src="/images/company-hero.jpg"
-          alt="社屋外観"
-          width={1400}
-          height={500}
-          className="w-full h-[300px] lg:h-[500px] object-cover"
-          priority
-        />
-      </section>
+      {/* Hero Image - Fixed Background */}
+      <section
+        className="h-[300px] lg:h-[500px] bg-fixed bg-cover bg-center"
+        style={{ backgroundImage: "url('/images/company-hero.jpg')" }}
+        role="img"
+        aria-label="社屋外観"
+      />
 
       {/* Greeting */}
       <section className="py-section-y-sp lg:py-section-y">
         <div className="max-w-container mx-auto px-6 lg:px-12">
-          <h2 className="font-en text-section-en-sp lg:text-section-en text-primary tracking-wider">
+          <h2 className="font-en text-[40px] lg:text-[56px] font-bold text-[#004888] tracking-wider">
             GREETING
           </h2>
-          <p className="text-section-jp text-text-muted mt-1 mb-10">
+          <p className="text-section-jp text-[#004888] mt-1 mb-10">
             ごあいさつ
           </p>
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
@@ -97,10 +93,10 @@ export default function CompanyPage() {
       <section className="py-section-y-sp lg:py-section-y bg-white">
         <div className="max-w-container mx-auto px-6 lg:px-12">
           <div className="text-center mb-12">
-            <h2 className="font-en text-section-en-sp lg:text-section-en text-primary tracking-wider">
+            <h2 className="font-en text-[40px] lg:text-[56px] font-bold text-[#004888] tracking-wider">
               OUTLINE
             </h2>
-            <p className="text-section-jp text-text-muted mt-1">会社概要</p>
+            <p className="text-section-jp text-[#004888] mt-1">会社概要</p>
           </div>
           <dl className="max-w-4xl mx-auto">
             {outlineItems.map((item) => (
@@ -124,10 +120,10 @@ export default function CompanyPage() {
       <section className="py-section-y-sp lg:py-section-y">
         <div className="max-w-container mx-auto px-6 lg:px-12">
           <div className="text-center mb-12">
-            <h2 className="font-en text-section-en-sp lg:text-section-en text-primary tracking-wider">
+            <h2 className="font-en text-[40px] lg:text-[56px] font-bold text-[#004888] tracking-wider">
               ACCESS
             </h2>
-            <p className="text-section-jp text-text-muted mt-1">アクセス</p>
+            <p className="text-section-jp text-[#004888] mt-1">アクセス</p>
           </div>
           <div className="max-w-4xl mx-auto">
             <p className="text-body text-text-primary mb-6 text-center">

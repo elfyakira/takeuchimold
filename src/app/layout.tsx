@@ -26,24 +26,49 @@ const roboto = Roboto({
   display: "swap",
 });
 
-// JSON-LD構造化データ
+// JSON-LD構造化データ（製造業向け）
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
+  "@type": "ManufacturingBusiness",
+  "@id": "https://www.tkss.co.jp/#organization",
   name: company.name,
+  alternateName: company.nameEn,
   description: seo.defaultDescription,
-  url: seo.siteUrl,
+  url: seo.siteUrl || "https://www.tkss.co.jp",
   telephone: contact.phone,
   email: contact.email,
+  foundingDate: "1970-02",
+  numberOfEmployees: {
+    "@type": "QuantitativeValue",
+    value: 25,
+  },
   address: locations.headquarters.address
     ? {
         "@type": "PostalAddress",
         streetAddress: locations.headquarters.address,
         postalCode: locations.headquarters.zipCode,
+        addressLocality: "あま市",
+        addressRegion: "愛知県",
         addressCountry: "JP",
       }
     : undefined,
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 35.18,
+    longitude: 136.81,
+  },
   image: images.logo,
+  logo: images.logo,
+  sameAs: [],
+  areaServed: "JP",
+  knowsAbout: [
+    "プラスチック射出成型用金型",
+    "金型設計",
+    "金型製作",
+    "自動車部品金型",
+    "家電金型",
+    "OA機器金型",
+  ],
 };
 
 export const metadata: Metadata = {

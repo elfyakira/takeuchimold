@@ -32,8 +32,8 @@ const features = [
 export default function AboutPage() {
   return (
     <main>
-      {/* Page Header - 50vh */}
-      <section className="relative h-[50vh] min-h-[350px] flex items-center">
+      {/* Hero Section - Full Screen with overlay */}
+      <section className="relative h-screen min-h-[600px] flex items-center">
         <Image
           src="/images/about-hero.jpg"
           alt="工場内部"
@@ -43,60 +43,58 @@ export default function AboutPage() {
         />
         <div className="absolute inset-0 bg-black/40" />
         <div className="relative max-w-container mx-auto px-6 lg:px-12 w-full">
-          <h1 className="font-en text-[40px] lg:text-[64px] font-bold text-white tracking-wider">
+          <h1 className="font-en text-[64px] lg:text-[120px] font-bold text-white tracking-wider mb-8">
             ABOUT US
           </h1>
+          <h2 className="text-[20px] lg:text-[28px] font-bold text-white mb-6">
+            品質をつくるのは、技術と設備、そして姿勢です。
+          </h2>
+          <p className="text-body lg:text-[18px] text-white/90 max-w-2xl leading-relaxed">
+            私たちは長年培ってきた職人技術と最新鋭の設備を軸に、<br />
+            お客様が求める品質・精度・再現性を確実に実現するため、<br />
+            工程ごとの最適化と技術力の向上に継続して取り組んでいます。
+          </p>
         </div>
       </section>
 
-      {/* Intro + Features - Dark BG */}
+      {/* Features - Dark BG */}
       <section className="bg-[#111111] text-white py-section-y-sp lg:py-section-y">
         <div className="max-w-container mx-auto px-6 lg:px-12">
-          {/* Intro */}
+          {/* Section Header */}
           <div className="mb-16 lg:mb-24">
-            <h2 className="font-en text-section-en-sp lg:text-section-en text-white tracking-wider">
+            <h2 className="font-en text-[40px] lg:text-[56px] font-bold text-white tracking-wider">
               FEATURE
             </h2>
-            <p className="text-section-jp text-white/60 mt-1 mb-8">
+            <p className="text-section-jp text-white/60 mt-1">
               3つの強み
-            </p>
-            <h3 className="text-[20px] lg:text-[24px] font-bold text-white mb-6">
-              品質をつくるのは、技術と設備、そして姿勢です。
-            </h3>
-            <p className="text-body text-white/80 max-w-2xl leading-relaxed">
-              私たちは長年培ってきた職人技術と最新鋭の設備を軸に、
-              お客様が求める品質・精度・再現性を確実に実現するため、
-              工程ごとの最適化と技術力の向上に継続して取り組んでいます。
             </p>
           </div>
 
           {/* 3 Features */}
-          <div className="space-y-20 lg:space-y-28">
+          <div className="space-y-24 lg:space-y-32">
             {features.map((f) => (
-              <div
-                key={f.num}
-                className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-start"
-              >
-                {/* Text */}
-                <div className="lg:w-1/2">
-                  <span className="font-en text-feature-num text-white/20">
+              <div key={f.num}>
+                {/* Number + Title Row */}
+                <div className="flex items-baseline gap-4 lg:gap-6 mb-6">
+                  <span className="font-en text-[48px] lg:text-[64px] font-bold text-white leading-none">
                     {f.num}
                   </span>
-                  <h4 className="text-[18px] lg:text-[20px] font-bold text-white mt-4 mb-6">
+                  <h3 className="text-[20px] lg:text-[24px] font-bold text-white">
                     {f.title}
-                  </h4>
-                  <p className="text-body text-white/80 leading-relaxed">
-                    {f.body}
-                  </p>
+                  </h3>
                 </div>
-                {/* Image */}
-                <div className="lg:w-1/2">
+                {/* Description Text */}
+                <p className="text-body text-white/80 leading-relaxed mb-8">
+                  {f.body}
+                </p>
+                {/* Image - Right Aligned */}
+                <div className="flex justify-end">
                   <Image
                     src={f.image}
                     alt={f.title}
                     width={600}
                     height={450}
-                    className="w-full aspect-[4/3] object-cover"
+                    className="w-full lg:w-[60%] aspect-[4/3] object-cover"
                   />
                 </div>
               </div>

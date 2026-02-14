@@ -31,26 +31,22 @@ export default function ServicePage() {
   return (
     <main>
       {/* Page Header */}
-      <section className="pt-32 lg:pt-40 pb-8 lg:pb-12">
+      <section className="pt-24 lg:pt-28 pb-6 lg:pb-8">
         <div className="max-w-container mx-auto px-6 lg:px-12">
-          <p className="text-section-jp text-text-muted">事業内容</p>
-          <h1 className="font-en text-[40px] lg:text-[64px] font-bold text-primary tracking-wider">
+          <p className="text-section-jp text-[#004888]">事業内容</p>
+          <h1 className="font-en text-[64px] lg:text-[96px] font-bold text-[#004888] tracking-wider leading-none">
             SERVICE
           </h1>
         </div>
       </section>
 
-      {/* Hero Image */}
-      <section>
-        <Image
-          src="/images/service-hero.jpg"
-          alt="金型製作"
-          width={1400}
-          height={500}
-          className="w-full h-[300px] lg:h-[500px] object-cover"
-          priority
-        />
-      </section>
+      {/* Hero Image - Fixed Background */}
+      <section
+        className="h-[300px] lg:h-[500px] bg-fixed bg-cover bg-center"
+        style={{ backgroundImage: "url('/images/service-hero.jpg')" }}
+        role="img"
+        aria-label="金型製作"
+      />
 
       {/* Intro */}
       <section className="py-section-y-sp lg:py-section-y">
@@ -69,18 +65,25 @@ export default function ServicePage() {
       {/* Works */}
       <section className="bg-bg-light py-section-y-sp lg:py-section-y">
         <div className="max-w-container mx-auto px-6 lg:px-12">
-          <h2 className="font-en text-section-en-sp lg:text-section-en text-primary tracking-wider">
+          <h2 className="font-en text-[40px] lg:text-[56px] font-bold text-[#004888] tracking-wider">
             WORKS
           </h2>
-          <p className="text-section-jp text-text-muted mt-1 mb-10">
+          <p className="text-section-jp text-[#004888] mt-1 mb-10">
             制作事例
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {[1, 2, 3, 4, 5, 6].map((n) => (
+            {[
+              { n: 1, alt: "プラスチック射出成型用金型 - 自動車部品向け" },
+              { n: 2, alt: "プラスチック射出成型用金型 - 住設機器向け" },
+              { n: 3, alt: "プラスチック射出成型用金型 - 家電製品向け" },
+              { n: 4, alt: "プラスチック射出成型用金型 - OA機器向け" },
+              { n: 5, alt: "プラスチック射出成型用金型 - コンテナ向け" },
+              { n: 6, alt: "プラスチック射出成型用金型 - 工業部品向け" },
+            ].map(({ n, alt }) => (
               <Image
                 key={n}
                 src={`/images/works-${n}.jpg`}
-                alt={`制作事例${n}`}
+                alt={alt}
                 width={400}
                 height={300}
                 className="w-full aspect-[4/3] object-cover"
@@ -103,7 +106,8 @@ export default function ServicePage() {
             <h2 className="text-[24px] lg:text-[32px] font-bold text-white text-center mb-10">
               設備詳細
             </h2>
-            <div className="overflow-x-auto">
+            {/* Desktop: Table */}
+            <div className="hidden lg:block overflow-x-auto">
               <table className="w-full text-sm text-white">
                 <thead>
                   <tr className="bg-white/10">
@@ -127,6 +131,32 @@ export default function ServicePage() {
                   ))}
                 </tbody>
               </table>
+            </div>
+
+            {/* Mobile: Card Layout */}
+            <div className="lg:hidden space-y-4">
+              {equipmentData.map((row, i) => (
+                <div
+                  key={i}
+                  className="bg-white/10 rounded-lg p-4"
+                >
+                  <h3 className="text-white font-bold mb-2">{row.name}</h3>
+                  <div className="grid grid-cols-2 gap-2 text-sm">
+                    <div>
+                      <span className="text-white/50">メーカー</span>
+                      <p className="text-white/90">{row.maker}</p>
+                    </div>
+                    <div>
+                      <span className="text-white/50">機台名</span>
+                      <p className="text-white/90">{row.model}</p>
+                    </div>
+                    <div className="col-span-2">
+                      <span className="text-white/50">最大ワークサイズ</span>
+                      <p className="text-white/90">{row.size}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

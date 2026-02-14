@@ -1,0 +1,6 @@
+# robots.txt for 株式会社竹内金型製作所
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.tkss.co.jp/sitemap.xml

@@ -684,7 +684,7 @@ cp "制作事例/DSC01448.JPG" works-6.jpg
 
 ## 14. 実装完了状況
 
-> **2026-02-14 更新**
+> **2026-02-14 最終更新**
 
 | Step | 作業 | 状態 |
 |------|------|------|
@@ -699,9 +699,11 @@ cp "制作事例/DSC01448.JPG" works-6.jpg
 | 8 | About Us ページ（hero 50vh + FEATURE 3つの強み） | **完了** |
 | 9 | Service ページ（intro + works 6枚 + 設備テーブル16行） | **完了** |
 | 10 | Company ページ（greeting + outline 11項目 + access map） | **完了** |
-| 11 | Recruit ページ | **次に実装予定** |
-| 12 | Contact ページ（電話・メール表示のみ、フォーム削除） | **完了** |
+| 11 | Recruit ページ（culture + environment + positions モーダル） | **完了** |
+| 12 | Contact ページ（求職者向けリデザイン） | **完了** |
 | 13 | ビルド検証 | **完了** |
+| 14 | SEO・LLMO対応（robots.txt / sitemap / JSON-LD / metadata） | **完了** |
+| 15 | SEO・LLMOガイドをテンプレート・ワークフローに展開 | **完了** |
 
 ---
 
@@ -752,11 +754,232 @@ cp "制作事例/DSC01448.JPG" works-6.jpg
 
 ---
 
-## 15. 未確定事項・TODO
+## 14.2 2026-02-14 セッション2での変更点
+
+### ABOUT USページ
+- ヒーローセクションをフルスクリーン（100vh）に変更
+- 画像の上に黒オーバーレイ + 白テキスト
+- キャッチコピー「品質をつくるのは、技術と設備、そして姿勢です。」をヒーロー内に配置
+
+### FEATUREセクション（ABOUT US）レイアウト修正
+- 01〜03の番号を白テキスト（48px/64px）に
+- タイトルと番号を同じ行に配置
+- 説明文は右端を画像と揃える
+- 画像はテキストの下、右寄せ（60%幅）
+
+### ページヘッダー統一
+- SERVICE, COMPANY, CONTACT, RECRUIT: `pt-24 lg:pt-28`（上に移動）
+- タイトルサイズ: 64px / 96px、太字、#004888
+
+### ヒーロー画像の固定背景化
+- SERVICE, COMPANY, RECRUIT: `bg-fixed bg-cover bg-center`
+- パララックス風のスクロール効果
+
+### セクションヘッダー統一（40px/56px、太字、#004888、中央揃え）
+- WORKS / 制作事例
+- FEATURE / 3つの強み（白テキスト）
+- GREETING / ごあいさつ
+- OUTLINE / 会社概要
+- ACCESS / アクセス
+- ENVIRONMENT / 働く環境
+- OUTLINE / 募集職種（POSITIONSから変更）
+
+### ヘッダーナビゲーション
+- アクティブなメニューは青（#004888）
+- 白背景ページでは黒テキスト、スクロール後は白テキスト
+- RECRUITとCONTACTの間にセパレーター「|」追加
+- テキストサイズを15pxに拡大
+
+### 設備詳細セクション（SERVICE）
+- モバイル: テーブル → カードレイアウトに変更
+- デスクトップ: テーブル表示を維持
+
+### モーダルz-index修正
+- RECRUITページのモーダルをz-[1001]に変更（ヘッダーより前面）
+
+### WORKS画像の背景置き換え
+- Gemini Pro（Nanobanana）で6枚の商品写真を再生成
+- オフィス背景 → プロの商品撮影用白/グレー背景に変更
+- works-2は4K生成後、通常解像度でシャープに再生成
+
+---
+
+## 14.3 2026-02-14 セッション3での変更点
+
+### CONTACTページ リデザイン（求職者向け）
+
+> **重要な方針転換:** サイト全体を見直した結果、このサイトは**採用特化サイト**であり、BtoB要素はほとんどない。CONTACTページは法人向けではなく、**求職者向け**としてリデザインした。
+
+#### 実装内容
+- ページヘッダー: 他ページと統一（CONTACT / お問い合わせ、青タイトル）
+- ヒーロー画像: `contact-bg.jpg`（固定背景、パララックス効果）
+- メッセージ: 「採用に関するご質問、会社見学のご希望など、お気軽にお問い合わせください。」
+- 電話/メール: シンプルなカード形式（縦スタック）
+- メール件名: 「採用に関するお問い合わせ」がデフォルト
+- 「採用情報」リンク: RECRUITページへの導線
+- アンカーポイント: `id="inquiry"` + `scroll-mt-24 lg:scroll-mt-28`（ヘッダー分のオフセット）
+
+#### 不採用にした要素（法人向け訴求）
+- 「55年以上の実績」等の実績アピール
+- 「金型製作プランをご提案」等のBtoBフロー
+- 会社情報セクション
+- 複雑なカードホバーエフェクト
+
+### RECRUITページ 導線変更
+- ENTRYボタン: `mailto:` → `/contact#inquiry` に変更
+- モーダル内「この職種に応募する」: `mailto:` → `/contact#inquiry` に変更
+- 理由: `mailto:` リンクはブラウザ/OS設定によりメーラーが起動しない場合がある
+
+### src/lib/site.ts
+- `stats` のexportを追加（`export const stats = site.stats;`）
+
+---
+
+## 14.4 2026-02-14 セッション4での変更点（SEO・LLMO対応）
+
+### 実施内容
+
+| 項目 | 対応 | ファイル |
+|------|------|---------|
+| robots.txt 作成 | 検索エンジン向け案内板 | `public/robots.txt` |
+| sitemap.xml 作成 | Next.js動的生成（全6ページ） | `src/app/sitemap.ts` |
+| recruit metadata 追加 | "use client"対応でlayout.tsx作成 | `src/app/recruit/layout.tsx` |
+| contact metadata 追加 | title/description設定 | `src/app/contact/page.tsx` |
+| 見出し構造修正 | about ページの h4 → h3 | `src/app/about/page.tsx` |
+| JSON-LD強化 | LocalBusiness → ManufacturingBusiness | `src/app/layout.tsx` |
+| alt属性改善 | 設備画像・制作事例を具体的に | `src/app/page.tsx`, `src/app/service/page.tsx` |
+
+### JSON-LD 追加プロパティ
+
+```typescript
+{
+  "@type": "ManufacturingBusiness",
+  "@id": "https://www.tkss.co.jp/#organization",
+  alternateName: "Takeuchi Mold Co., Ltd.",
+  foundingDate: "1970-02",
+  numberOfEmployees: { "@type": "QuantitativeValue", value: 25 },
+  geo: { "@type": "GeoCoordinates", latitude: 35.18, longitude: 136.81 },
+  knowsAbout: [
+    "プラスチック射出成型用金型",
+    "金型設計",
+    "金型製作",
+    "自動車部品金型",
+    "家電金型",
+    "OA機器金型",
+  ],
+}
+```
+
+### 作成ドキュメント
+
+| ファイル | 用途 |
+|---------|------|
+| `doc/SEO_LLMO_REPORT.md` | クライアント向けSEO・LLMO施策説明書 |
+| `SEO_LLMO_GUIDE.md` | テンプレート向け汎用実装ガイド（固有名詞なし） |
+| `doc/NOTEBOOKLM_SLIDE_PROMPT.md` | NotebookLMスライド作成用指示文 |
+
+### テンプレート・ワークフローへの展開
+
+SEO・LLMOガイドを全テンプレートに展開し、制作ワークフローに組み込み完了。
+
+**テンプレートへの配置（7リポジトリすべてにプッシュ済み）:**
+- template-standard
+- template-fullorder
+- template-recruit-magazine
+- template-leadgen-minimal
+- template-leadgen-visual
+- template-trust-visual
+- template-authority-minimal
+
+**work-manual GAS更新（compositionPrompt.js）:**
+- HANDOFFテンプレートの「参照ファイル」に `SEO_LLMO_GUIDE.md` を追加
+- 「次にやること」の最終フェーズとしてSEO・LLMO対策チェックリストを追加
+- 今後生成されるHANDOFFには自動的にSEO・LLMOフェーズが含まれる
+
+---
+
+## 15. 次世代セッションタスク
+
+### 15.1 SEO・LLMO チェック
+
+> **完了（2026-02-14）**
+
+#### 実施済み項目
+
+**SEO基本項目:**
+- [x] 各ページの `<title>` タグが適切か
+- [x] 各ページの `<meta name="description">` が適切か
+- [x] 見出し構造（h1 > h2 > h3）が正しいか
+- [x] 画像の `alt` 属性が適切か
+- [x] 構造化データ（JSON-LD）が正しく出力されているか
+- [x] OGP画像が正しく設定されているか
+- [x] canonical URL が設定されているか
+- [x] robots.txt / sitemap.xml が存在するか
+
+**LLMO（LLM最適化）:**
+- [x] 会社情報が明確に記載されているか（会社名、所在地、事業内容）
+- [x] 各ページの目的が明確か
+- [x] コンテンツが構造化されているか（リスト、テーブル等）
+- [x] 専門用語に適切な説明があるか
+
+#### 今後の作業（本番公開後）
+
+- [ ] Google Search Console にサイト登録
+- [ ] sitemap.xml を送信
+- [ ] Rich Results Test で JSON-LD 検証
+- [ ] OGP確認（Facebook/Twitter/LINE）
+
+### 15.2 アニメーション実装
+
+> **ステータス: 未着手**
+>
+> 次世代セッションで検討・実装を行う。
+
+#### タスク
+
+1. **現状確認**: 各ページを確認し、アニメーションが必要な箇所を洗い出す
+2. **仕様検討**: 何をどこにどんなアニメーションを入れるか決定する
+3. **技術選定**: CSS Transitions / Intersection Observer / framer-motion のいずれかを選択
+4. **実装**: 共通コンポーネント作成 → 各ページに適用
+5. **検証**: パフォーマンス確認、過度なアニメーションになっていないか確認
+
+#### 設計原則（反AIデザイン原則に従う）
+
+- **過度なアニメーションは避ける**
+- すべての要素にアニメーションをつけない（本当に注目してほしい要素にのみ）
+- 派手な動きより、控えめで自然な動き
+- アニメーション時間は短め（0.3〜0.6秒程度）
+- パフォーマンスに配慮（`will-change`、`transform`、`opacity` を使用）
+
+#### 検討候補
+
+| 箇所 | アニメーション案 | 優先度 |
+|------|----------------|--------|
+| ヒーローテキスト | ページ読み込み時フェードイン | 高 |
+| 各セクション | スクロール時に下からフェードイン | 中 |
+| カード・画像 | ホバー時に微細なスケール・影変化 | 低 |
+| CTAボタン | ホバー時の色変化（既存で対応済みの可能性） | 低 |
+
+#### 技術選定の指針
+
+| 技術 | メリット | デメリット | 推奨ケース |
+|------|---------|-----------|-----------|
+| CSS Transitions | 軽量、依存なし | 複雑なアニメーションは困難 | シンプルなフェードイン |
+| Intersection Observer + CSS | 軽量、スクロール検知可能 | 実装がやや複雑 | スクロール連動アニメ |
+| framer-motion | 柔軟、宣言的 | バンドルサイズ増加 | 複雑なアニメーションが必要な場合 |
+
+#### 実装時の注意
+
+- `package.json` に framer-motion が入っていない（必要なら追加）
+- モバイルでのパフォーマンスを必ず確認
+- `prefers-reduced-motion` への配慮を検討
+
+---
+
+## 16. 未確定事項・TODO
 
 | 項目 | 状態 | 対応 |
 |------|------|------|
-| **Recruitページ** | **次に実装** | デザイン完成形に合わせて実装予定 |
 | 募集要項の詳細 | 未確定 | エンゲージ掲載内容を後日投入。プレースホルダーで仮実装 |
 | 制作事例（WORKS）写真 | 未提供 | クライアントより提供後に配置。プレースホルダーで仮実装 |
 | アクセスマップ | イラスト地図を想定 | 未提供の場合 Google Maps iframe で仮実装 |
