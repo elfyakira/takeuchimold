@@ -931,116 +931,210 @@ SEO・LLMOガイドを全テンプレートに展開し、制作ワークフロ�
 
 ### 15.2 アニメーション実装
 
-> **ステータス: 調査完了・方針決定待ち**
+> **ステータス: takeuchimold完成・hp-template展開中**
 
-#### ゴール
+#### takeuchimoldのアニメーション仕様（正解）
 
-- スクロールに連動して各セクションがフェードインするアニメーション
-- 画面外の要素は、スクロールして画面に入ったときにアニメーション開始
+| 項目 | 仕様 |
+|------|------|
+| ライブラリ | **なし**（純粋CSS transition + IntersectionObserver） |
+| スクロール位置問題 | `waitForScrollTop()`で解決 |
+| ページ構造 | `layout.tsx`（metadata）+ `"use client" page.tsx` |
 
-#### 実施したこと（2026-02-14 セッション1）
+#### コンポーネント構成
 
-1. **共通コンポーネント作成** (`src/components/animations/`)
-   - `FadeInUp.tsx` - スクロール連動フェードイン+スライドアップ
-   - `FadeInImage.tsx` - 画像用フェードイン+ホバースケール
-   - `StaggerContainer.tsx` - 子要素の順次アニメーション
-   - `AnimatedLink.tsx` - アンダーラインアニメーション付きリンク
-   - `index.ts` - エクスポート
+```
+src/components/animations/
+├── FadeInUp.tsx          # スクロール連動フェードイン + スライドアップ
+├── FadeInImage.tsx       # 方向別スライドイン画像（left/right/up）
+├── StaggerContainer.tsx  # 子要素の順次アニメーション
+├── AnimatedLink.tsx      # アンダーラインアニメーション付きリンク
+├── HeroBackground.tsx    # ヒーロー背景フェードイン
+└── index.ts              # エクスポート
+```
 
-2. **全ページに適用**
+#### 核心：waitForScrollTop()
 
-3. **ビルド成功** (`478e23f`)
+```typescript
+// スクロール位置が0になるまで待ち、さらに少し待機
+function waitForScrollTop(): Promise<void> {
+  return new Promise(resolve => {
+    const check = () => {
+      if (window.scrollY === 0) {
+        // スクロール完了後、100ms待ってからアニメーション開始
+        setTimeout(resolve, 100);
+      } else {
+        requestAnimationFrame(check);
+      }
+    };
+    check();
+  });
+}
+```
 
-#### 実施したこと（2026-02-14 セッション2）
+**なぜ必要か：**
+1. TOPページで1000pxまでスクロール
+2. Serviceページに遷移
+3. **一瞬、Serviceページが1000pxの位置から表示される**
+4. その後、0pxまでスクロールアップ
+5. この間に1000px〜0pxの間の要素がすべてIntersectionObserverで「画面内」と判定されてアニメーション発火済みになる
 
-1. **原因調査完了**
+`waitForScrollTop()`はスクロール位置が0になってからIntersectionObserverを開始することでこの問題を回避する。
 
-2. **方針A実装: layout.tsx + "use client" page.tsx 構造に変更**
-   - 各ページにlayout.tsxを作成（metadataを移動）
-   - 各page.tsxに"use client"を追加
+#### ページ構造
 
-   **変更したファイル:**
-   - `src/app/page.tsx` - "use client"追加
-   - `src/app/about/layout.tsx` - 新規作成（metadata）
-   - `src/app/about/page.tsx` - "use client"追加、metadata削除
-   - `src/app/service/layout.tsx` - 新規作成（metadata）
-   - `src/app/service/page.tsx` - "use client"追加、metadata削除
-   - `src/app/company/layout.tsx` - 新規作成（metadata）
-   - `src/app/company/page.tsx` - "use client"追加、metadata削除
-   - `src/app/contact/layout.tsx` - 新規作成（metadata）
-   - `src/app/contact/page.tsx` - "use client"追加、metadata削除
+アニメーションを使用するページは以下の構造にする：
 
-#### 問題の詳細（調査結果）
+**layout.tsx:**
+```tsx
+import { Metadata } from 'next';
 
-**問題1: アニメーションが全て同時に発火する**
+export const metadata: Metadata = {
+  title: 'About Us',
+  description: '会社紹介',
+};
 
-元々の問題は「Recruitページ以外でアニメーションが動作しない」ではなく、
-**「ページを開いた瞬間に全セクションのアニメーションが同時に発火し、スクロールする頃には全て完了済み」** だった。
+export default function AboutLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return children;
+}
+```
 
-**原因:**
-- Server Componentページでは、HTMLがサーバーで完全にレンダリングされる
-- クライアントでハイドレーション時、全FadeInUpのuseEffectが「同時に」発火
-- 全IntersectionObserverが「同時に」observe()を呼ぶ
-- 結果、全アニメーションが同時開始
+**page.tsx:**
+```tsx
+'use client';
 
-**Recruitページが正しく動作する理由:**
-- ページ全体がClient Component（`"use client"`）
-- Reactが段階的にコンポーネントをレンダリング
-- 各FadeInUpが自然なタイミングでマウント
-- IntersectionObserverが正しく機能
+import { FadeInUp, FadeInImage } from '@/components/animations';
 
-**問題2: ページ遷移時のスクロール位置問題（新規発見）**
+export default function AboutPage() {
+  return (
+    <div>
+      <FadeInUp>
+        <h1>About Us</h1>
+      </FadeInUp>
+    </div>
+  );
+}
+```
 
-方針A実装後に発見された問題:
-- ヘッダーのリンクをクリックしてページ遷移すると
-- **前のページのスクロール位置から表示される**
-- その後、ヒーローセクションまでスクロールアップする
-- この間にアニメーションが発火してしまう
+---
 
-**これは通常のNext.jsの動作ではない。原因不明。**
+### 15.3 hp-template アニメーション展開
 
-#### yumesutaHPとの比較
+> **ステータス: 未完了（2026-02-14）**
+>
+> **重要警告: 前セッションで「完了」と誤報告された。実際は未完了。**
 
-`/mnt/c/yumesutaHP` でも同じ構造（layout.tsx + "use client" page.tsx）を使用しているが、スクロール問題は発生していない。
+---
 
-**違い:**
-- yumesutaHP: `useScrollAnimation`フック + CSSクラス（`scroll-fade-up`）でアニメーション
-- takeuchimold: 各FadeInUpコンポーネントが個別にIntersectionObserverを持つ
+#### ⚠️ 前セッションの過ち（絶対に繰り返さないこと）
 
-**仮説:**
-- 問題は構造ではなく、アニメーション実装方法にある可能性
-- FadeInUpの初期状態（opacity: 0）がブラウザのスクロール位置計算に影響？
+1. **FadeInUpだけを修正して「完了」と報告した** - 5つのアニメーションコンポーネント全てを適用すべきだった
+2. **「基盤をコピーした」だけで「各ページに適用した」と誤解を招く報告をした** - 基盤コピーとページ適用は別作業
+3. **StaggerItemが存在しないのにインポートされている問題を「削除」で解決しようとした** - 足りないコンポーネントは作成すべき
+4. **各ページを実際に確認せずに作業完了と判断した** - 必ず全ページを目視確認すること
 
-#### 現在のページ構成
+---
 
-| ページ | layout.tsx | page.tsx | コンポーネントタイプ |
-|--------|-----------|----------|---------------------|
-| TOP | ルート共有 | "use client" | Client Component |
-| About | あり | "use client" | Client Component |
-| Service | あり | "use client" | Client Component |
-| Company | あり | "use client" | Client Component |
-| Contact | あり | "use client" | Client Component |
-| Recruit | あり（元から） | "use client" | Client Component |
+#### 5つのアニメーションコンポーネント（すべて使用すること）
 
-#### 次世代セッションでやること
+| コンポーネント | 用途 | 使用場面 |
+|---------------|------|---------|
+| **FadeInUp** | スクロール連動フェードイン + スライドアップ | テキストブロック、カード、セクション |
+| **FadeInImage** | 方向別スライドイン画像（left/right/up） | 画像要素、特に2カラムレイアウト |
+| **StaggerContainer** | 子要素の順次アニメーション | リスト、グリッド、カードグループ |
+| **AnimatedLink** | アンダーラインアニメーション付きリンク | CTAリンク、「Learn More」「VIEW ALL」等 |
+| **HeroBackground** | ヒーロー背景フェードイン | ページトップのヒーローセクション背景 |
 
-1. **スクロール位置問題の原因調査**
-   - なぜページ遷移時に前のスクロール位置が維持されるのか
-   - yumesutaHPでは問題がないのに、なぜtakeuchimoldでは問題が起きるのか
+**注意: StaggerItemというコンポーネントは存在しない。StaggerContainerは子要素を自動的にスタガーする設計。**
+**一部のテンプレートでStaggerItemをインポートしているが、これはエラー。StaggerItemコンポーネントを作成するか、インポートを削除してStaggerContainerのみ使用する。**
 
-2. **方針の検討**
-   - 方針A（現在の実装）を維持してスクロール問題を解決する
-   - または、アニメーション実装方法をyumesutaHP方式に変更する
-   - または、方針Aを元に戻して別のアプローチを検討する
+---
 
-3. **検証**
-   - ビルドしてブラウザで実際に動作確認
+#### 現在の正確な状態
 
-#### 関連ファイル
+| テンプレート | animations基盤 | 全ページ適用 | 備考 |
+|-------------|---------------|-------------|------|
+| template-fullorder | ✓ コピー済 | ✗ 未確認 | TOPページのみ部分的に使用 |
+| template-standard | ✓ コピー済 | ✗ 未確認 | 一部ページのみ、5つ全ては未適用 |
+| template-authority-minimal | ✓ コピー済 | ✗ 未完了 | FadeInUpのみ置換、他4つは未適用 |
+| template-trust-visual | ✓ コピー済 | ✗ 未完了 | TOPのみFadeInUp使用、StaggerItemインポートエラーあり |
+| template-leadgen-minimal | ✓ コピー済 | ✗ 未確認 | FadeInViewは書き換え済み、5つ全ては未適用 |
+| template-leadgen-visual | ✓ コピー済 | ✗ 未確認 | 基盤コピーのみ |
+| template-recruit-magazine | ✓ コピー済 | ✗ 未確認 | 基盤コピーのみ |
 
-- `src/components/animations/` - アニメーションコンポーネント
-- `doc/ANIMATION_PLAN.md` - アニメーション計画書
-- `/mnt/c/yumesutaHP/src/hooks/useScrollAnimation.ts` - 参考実装
+---
+
+#### 次世代セッションでやるべき作業
+
+**各テンプレートに対して以下を実行すること：**
+
+1. **全ページをリストアップ**
+   ```bash
+   ls -la /mnt/c/hp-template/<テンプレート名>/src/app/
+   ```
+
+2. **各ページで5つのアニメーションを適切に使用しているか確認**
+   ```bash
+   grep -r "FadeInUp\|FadeInImage\|StaggerContainer\|AnimatedLink\|HeroBackground" /mnt/c/hp-template/<テンプレート名>/src/app/ --include="*.tsx"
+   ```
+
+3. **使用していないコンポーネントがあれば適切な場所に追加**
+   - ヒーローセクション背景 → HeroBackground
+   - テキストブロック → FadeInUp
+   - 画像 → FadeInImage（direction指定）
+   - リスト/グリッド → StaggerContainer
+   - CTAリンク → AnimatedLink
+
+4. **Metadataがあるページはlayout.tsx分離**
+   - `export const metadata`がある → layout.tsxに移動
+   - page.tsxに`'use client'`を追加
+
+5. **動作確認**
+   ```bash
+   cd /mnt/c/hp-template/<テンプレート名>
+   npm run dev
+   ```
+   - ブラウザで全ページを確認
+   - ページ遷移時にアニメーションが正しく発火するか確認
+   - スクロールでアニメーションが発火するか確認
+
+6. **ビルド確認**
+   ```bash
+   npm run build
+   ```
+
+---
+
+#### 参照ファイル（マスター）
+
+| ファイル | パス |
+|---------|------|
+| FadeInUp | `/mnt/c/client_hp/takeuchimold/src/components/animations/FadeInUp.tsx` |
+| FadeInImage | `/mnt/c/client_hp/takeuchimold/src/components/animations/FadeInImage.tsx` |
+| StaggerContainer | `/mnt/c/client_hp/takeuchimold/src/components/animations/StaggerContainer.tsx` |
+| AnimatedLink | `/mnt/c/client_hp/takeuchimold/src/components/animations/AnimatedLink.tsx` |
+| HeroBackground | `/mnt/c/client_hp/takeuchimold/src/components/animations/HeroBackground.tsx` |
+| index.ts | `/mnt/c/client_hp/takeuchimold/src/components/animations/index.ts` |
+
+---
+
+#### 既知の問題
+
+1. **StaggerItemインポートエラー**
+   - template-trust-visual/src/app/page.tsx でStaggerItemをインポートしているが、コンポーネントが存在しない
+   - 対応: StaggerItemコンポーネントを作成してindex.tsに追加するか、StaggerContainerのみ使用するようにコードを修正
+
+2. **delay単位の不統一**
+   - 旧コードは秒単位（0.2）、新コードはミリ秒（200）
+   - FadeInUp/FadeInImageには自動変換を追加済み（delay < 1 なら秒と判断してミリ秒に変換）
+
+3. **古いコンポーネントの残存**
+   - 一部テンプレートに`animation/`（単数形）や`ScrollReset.tsx`が残っている可能性
+   - 確認して削除すること
 
 ---
 
