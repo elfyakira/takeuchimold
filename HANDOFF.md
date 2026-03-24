@@ -898,6 +898,62 @@ SEO・LLMOガイドを全テンプレートに展開し、制作ワークフロ�
 
 ---
 
+## 14.5 2026-03-24 旧サイトURL対応・SEO追加改善
+
+### 背景
+
+リニューアル後も旧サイトのURLがGoogle検索結果に残っていたため、リダイレクト設定とSEO追加対応を実施。
+
+### 実施内容
+
+- 旧URLからの301リダイレクト設定（`next.config.ts`）
+- 各ページのメタデータ改善（title日本語化・description拡充・canonical URL追加）
+- `siteUrl` を `https://www.tkss.co.jp` に設定（`data/site.json`）
+- `robots.ts` を新規作成（`src/app/robots.ts`）
+- カスタム404ページを新規作成（`src/app/not-found.tsx`）
+
+### リダイレクト設定一覧（`next.config.ts`）
+
+現在設定済みの旧URL → 新URLの対応:
+
+- /index.html → /（トップ）
+- /gaiyou → /about
+- /kikai → /service#equipment
+- /seihin → /service
+- /cad → /service#equipment
+- /ayuimi → /company
+- /map → /company
+- /about.html → /about
+- /service.html → /service
+- /company.html → /company
+- /recruit.html → /recruit
+- /contact.html → /contact
+- /:path*/index.html → /:path*（サブディレクトリの汎用パターン）
+
+### 旧URLリダイレクトの追加方法
+
+新たに旧URLが見つかった場合、`next.config.ts` の `redirects()` 内に以下の形式で追加:
+
+```typescript
+{
+  source: "/旧パス",
+  destination: "/新パス",
+  permanent: true,  // 301リダイレクト
+},
+```
+
+追加後、デプロイ（`vercel --prod`）で反映される。
+
+### 対象ファイル
+
+- `next.config.ts` — リダイレクト設定
+- `data/site.json` — siteUrl設定
+- `src/app/*/layout.tsx` — 各ページのメタデータ（title, description, canonical）
+- `src/app/robots.ts` — robots.txt生成
+- `src/app/not-found.tsx` — カスタム404ページ
+
+---
+
 ## 15. 次世代セッションタスク
 
 ### 15.1 SEO・LLMO チェック
@@ -1147,7 +1203,7 @@ export default function AboutPage() {
 | アクセスマップ | イラスト地図を想定 | 未提供の場合 Google Maps iframe で仮実装 |
 | ロゴ画像 | テンプレートのダミー | クライアントのロゴに差し替え |
 | Privacy Policy | 未定義 | 必要に応じて `/privacy` ページを追加 |
-| 404/500エラーページ | 未定義 | Next.jsデフォルトまたはカスタムで実装 |
+| 404エラーページ | **完了** | `src/app/not-found.tsx` に実装済み（2026-03-24） |
 | OGP画像 | テンプレートの動的生成あり | 企業名・キャッチコピーを反映するよう確認 |
 
 ---
