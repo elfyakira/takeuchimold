@@ -15,6 +15,36 @@ const nextConfig: NextConfig = {
         destination: "/about",
         permanent: true,
       },
+      // 旧サイト: 機械設備
+      {
+        source: "/kikai",
+        destination: "/service#equipment",
+        permanent: true,
+      },
+      // 旧サイト: 製品紹介
+      {
+        source: "/seihin",
+        destination: "/service",
+        permanent: true,
+      },
+      // 旧サイト: CAD/CAM設備
+      {
+        source: "/cad",
+        destination: "/service#equipment",
+        permanent: true,
+      },
+      // 旧サイト: 会社のあゆみ
+      {
+        source: "/ayuimi",
+        destination: "/company",
+        permanent: true,
+      },
+      // 旧サイト: アクセスマップ
+      {
+        source: "/map",
+        destination: "/company",
+        permanent: true,
+      },
       // 旧サイト: .html 拡張子付きページの汎用リダイレクト
       // 新サイトに対応するページがあればそこへ、なければトップへ
       {
