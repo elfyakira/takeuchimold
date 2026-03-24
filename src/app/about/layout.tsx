@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "ABOUT US",
+  title: "私たちについて",
   description:
-    "株式会社竹内金型製作所の強み。55年以上の職人技術・最新鋭設備・改善への姿勢で高精度金型を提供します。",
+    "竹内金型製作所の強み。半世紀以上の経験に裏打ちされた職人技術・最新鋭の加工設備・変化に応える柔軟な姿勢で、高精度なプラスチック射出成型用金型を提供します。",
+  alternates: {
+    canonical: "/about",
+  },
 };
 
 export default function AboutLayout({
