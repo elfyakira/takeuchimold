@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import ContactBanner from "@/components/ContactBanner";
 import { FadeInUp, StaggerContainer, HeroBackground } from "@/components/animations";
@@ -31,6 +31,7 @@ type Position = {
   id: string;
   title: string;
   image: string;
+  applyUrl: string;
   employmentType: string;
   salary: string;
   salaryRange: string;
@@ -53,6 +54,7 @@ const positions: Position[] = [
     employmentType: "中途採用（正社員）",
     salary: "月給 215,000円〜370,000円",
     salaryRange: "21.5万〜37万円",
+    applyUrl: "https://en-gage.net/traliebe0115_saiyo/work_15062647/?via_recruit_page=1",
     tags: ["未経験OK", "学歴不問", "急募"],
     summary: "未経験OK◎モクモク作業で技術が身につく金型オペレータースタッフ！",
     jobDescription: [
@@ -96,6 +98,7 @@ const positions: Position[] = [
     employmentType: "中途採用（正社員）",
     salary: "月給 210,000円〜330,000円",
     salaryRange: "21万〜33万円",
+    applyUrl: "https://en-gage.net/traliebe0115_saiyo/work_15183462/?via_recruit_page=1",
     tags: ["未経験OK", "学歴不問", "急募"],
     summary: "50年続く安定企業で成長！選べる金型加工・組立の仕事★",
     jobDescription: [
@@ -139,6 +142,7 @@ const positions: Position[] = [
     employmentType: "中途採用（正社員）",
     salary: "月給 205,000円〜450,000円",
     salaryRange: "20.5万〜45万円",
+    applyUrl: "https://en-gage.net/traliebe0115_saiyo/work_15183398/?via_recruit_page=1",
     tags: ["未経験OK", "学歴不問", "急募"],
     summary: "未経験OK！CADで始める金型設計★若手活躍中の安定メーカー！",
     jobDescription: [
@@ -344,12 +348,14 @@ function PositionModal({
 
           {/* Apply Button */}
           <div className="text-center">
-            <Link
-              href="/contact#inquiry"
+            <a
+              href={position.applyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block w-full max-w-md py-4 bg-[#004888] text-white text-lg font-bold tracking-wider text-center transition-colors hover:bg-[#003366]"
             >
               この職種に応募する
-            </Link>
+            </a>
           </div>
         </div>
       </div>
