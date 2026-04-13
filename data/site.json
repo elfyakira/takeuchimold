@@ -1,18 +1,18 @@
 {
   "navigation": {
     "main": [
-      { "label": "ABOUT US", "href": "/about" },
-      { "label": "SERVICE", "href": "/service" },
-      { "label": "COMPANY", "href": "/company" },
-      { "label": "RECRUIT", "href": "/recruit" },
-      { "label": "CONTACT", "href": "/contact" }
+      { "label": "私たちについて", "href": "/about" },
+      { "label": "事業内容", "href": "/service" },
+      { "label": "会社概要", "href": "/company" },
+      { "label": "採用情報", "href": "/recruit" },
+      { "label": "お問い合わせ", "href": "/contact" }
     ],
     "footer": [
-      { "label": "ABOUT US", "href": "/about" },
-      { "label": "SERVICE", "href": "/service" },
-      { "label": "COMPANY", "href": "/company" },
-      { "label": "RECRUIT", "href": "/recruit" },
-      { "label": "CONTACT", "href": "/contact" }
+      { "label": "私たちについて", "href": "/about" },
+      { "label": "事業内容", "href": "/service" },
+      { "label": "会社概要", "href": "/company" },
+      { "label": "採用情報", "href": "/recruit" },
+      { "label": "お問い合わせ", "href": "/contact" }
     ],
     "cta": {
       "label": "",
