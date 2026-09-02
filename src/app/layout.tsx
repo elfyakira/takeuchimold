@@ -3,6 +3,7 @@ import { Noto_Serif_JP, Noto_Sans_JP, Roboto } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { seo, company, contact, locations, images } from "@/lib/site";
 
 const notoSerifJP = Noto_Serif_JP({
@@ -142,6 +143,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <GoogleAnalytics />
       </body>
     </html>
   );

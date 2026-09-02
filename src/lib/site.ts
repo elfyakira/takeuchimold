@@ -65,6 +65,9 @@ export interface SiteData {
     defaultTitle: string;
     defaultDescription: string;
   };
+  analytics: {
+    gaMeasurementId: string;
+  };
   stats: {
     yearsInBusiness: string;
     projectsCompleted: string;
@@ -146,4 +149,5 @@ export const contact = site.contact;
 export const locations = site.locations;
 export const seo = site.seo;
 export const images = site.images;
+export const analytics = site.analytics;
 export const stats = site.stats;
