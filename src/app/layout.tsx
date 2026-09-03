@@ -84,6 +84,11 @@ export const metadata: Metadata = {
     canonical: "/",
   },
 
+  // Google Search Console サイト所有権確認
+  verification: {
+    google: "0MK1n73hWLxmurefy4SaEE2-xQf8QnUFBTsFh-OAz78",
+  },
+
   robots: {
     index: true,
     follow: true,
