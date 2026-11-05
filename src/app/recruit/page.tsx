@@ -35,15 +35,16 @@ type Position = {
   employmentType: string;
   salary: string;
   salaryRange: string;
+  salaryNotes?: string[];
   tags: string[];
   summary: string;
   jobDescription: string[];
   requirements: string[];
-  workHours: string;
-  holidays: string[];
+  workHours?: string;
+  holidays?: string[];
   benefits: string[];
-  incomeExamples: string[];
-  selectionFlow: string[];
+  incomeExamples?: string[];
+  selectionFlow?: string[];
 };
 
 const positions: Position[] = [
@@ -179,6 +180,67 @@ const positions: Position[] = [
       "内定 ※最短3日以内の入社が可能",
     ],
   },
+  {
+    id: "injection",
+    title: "射出成形オペレーター",
+    image: "/images/recruit-injection.png",
+    employmentType: "中途採用（正社員）",
+    salary: "月給 205,000円〜330,000円",
+    salaryRange: "20.5万〜33万円",
+    applyUrl: "/contact#inquiry",
+    tags: ["経験者", "学歴不問", "急募"],
+    summary: "「射出成形オペレーター」あなたが培ってきた「プラスチック射出成形」の技術と経験を存分に発揮しませんか",
+    jobDescription: [
+      "【射出成形業務】",
+      "自動車のプラスチック内外装部品、運搬用コンテナー、日用品における射出成形業務全般をお任せします。（量産前の金型確認TRY）",
+      "・条件出し調整：樹脂特性や金型構造を理解した上での、最適な成形条件のセットアップ。",
+      "・射出成形の金型交換段取り",
+    ],
+    requirements: [
+      "学歴不問 / 射出成形業務経験者",
+      "成形業務のない時は、3tトラックでの近場の搬出・搬入や簡易的な金型作製業務全般の補佐をお願いします",
+    ],
+    workHours: "8:00〜16:45（実働7時間45分、休憩12:00〜13:00）",
+    holidays: ["週休2日制（会社カレンダーに準ずる）", "GW休暇", "夏季休暇", "年末年始休暇"],
+    benefits: [
+      "各種社会保険完備（雇用・厚生年金・労災・健康）",
+      "交通費支給（5,000〜20,000円）",
+      "資格取得支援",
+      "仕出し弁当（3割負担）",
+      "役職手当（10,000〜50,000円）",
+      "家族手当（配偶者：5,000円、子：2,500円※3人まで）",
+      "賞与年2回（業績に応じて支給）",
+    ],
+    incomeExamples: [
+      "350万円 / 入社1年目・26歳",
+      "400万円 / 入社5年目・29歳",
+      "500万円 / 入社10年目・33歳",
+    ],
+    selectionFlow: [
+      "「応募する」ボタンよりご応募",
+      "採用担当者より、お電話もしくはメールにてご連絡",
+      "面接（見学も可能です）",
+      "内定 ※最短3日以内の入社が可能",
+    ],
+  },
+  {
+    id: "injection-part",
+    title: "プラスチック射出成形",
+    image: "/images/recruit-injection.png",
+    employmentType: "パート",
+    salary: "時給 2,000円〜2,500円",
+    salaryRange: "時給 2,000円〜2,500円",
+    salaryNotes: ["賃金締切日：固定（月末）", "賃金支払日：固定（翌月20日）"],
+    applyUrl: "/contact#inquiry",
+    tags: ["経験者", "学歴不問", "急募"],
+    summary: "射出成形業務経験者/学歴不問急募",
+    jobDescription: [
+      "【射出成形業務】",
+      "社内射出成形機（東芝170t、450t）を使用して、新作金型、修理、設変金型の確認成形",
+    ],
+    requirements: ["学歴不問 / 射出成形業務経験者"],
+    benefits: ["駐車場あり", "通勤手当：実費支給（上限あり 月額10,000円）"],
+  },
 ];
 
 function PositionModal({
@@ -248,6 +310,11 @@ function PositionModal({
           <div className="bg-gray-50 p-4 rounded-lg mb-6">
             <p className="text-sm text-gray-600 mb-1">給与</p>
             <p className="text-xl font-bold text-[#004888]">{position.salary}</p>
+            {position.salaryNotes?.map((note) => (
+              <p key={note} className="text-sm text-gray-600 mt-1">
+                {note}
+              </p>
+            ))}
           </div>
 
           {/* Job Description */}
@@ -279,26 +346,32 @@ function PositionModal({
           </div>
 
           {/* Work Hours & Holidays */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-            <div>
-              <h4 className="text-lg font-bold text-gray-800 mb-3 pb-2 border-b border-gray-200">
-                勤務時間
-              </h4>
-              <p className="text-gray-700">{position.workHours}</p>
+          {(position.workHours || position.holidays) && (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+              {position.workHours && (
+                <div>
+                  <h4 className="text-lg font-bold text-gray-800 mb-3 pb-2 border-b border-gray-200">
+                    勤務時間
+                  </h4>
+                  <p className="text-gray-700">{position.workHours}</p>
+                </div>
+              )}
+              {position.holidays && (
+                <div>
+                  <h4 className="text-lg font-bold text-gray-800 mb-3 pb-2 border-b border-gray-200">
+                    休日休暇
+                  </h4>
+                  <ul className="space-y-1">
+                    {position.holidays.map((holiday, i) => (
+                      <li key={i} className="text-gray-700">
+                        {holiday}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
-            <div>
-              <h4 className="text-lg font-bold text-gray-800 mb-3 pb-2 border-b border-gray-200">
-                休日休暇
-              </h4>
-              <ul className="space-y-1">
-                {position.holidays.map((holiday, i) => (
-                  <li key={i} className="text-gray-700">
-                    {holiday}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+          )}
 
           {/* Benefits */}
           <div className="mb-6">
@@ -316,6 +389,7 @@ function PositionModal({
           </div>
 
           {/* Income Examples */}
+          {position.incomeExamples && (
           <div className="mb-6">
             <h4 className="text-lg font-bold text-gray-800 mb-3 pb-2 border-b border-gray-200">
               年収例
@@ -328,8 +402,10 @@ function PositionModal({
               ))}
             </div>
           </div>
+          )}
 
           {/* Selection Flow */}
+          {position.selectionFlow && (
           <div className="mb-8">
             <h4 className="text-lg font-bold text-gray-800 mb-3 pb-2 border-b border-gray-200">
               選考フロー
@@ -345,13 +421,15 @@ function PositionModal({
               ))}
             </div>
           </div>
+          )}
 
           {/* Apply Button */}
           <div className="text-center">
             <a
               href={position.applyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+              {...(position.applyUrl.startsWith("http")
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
               className="inline-block w-full max-w-md py-4 bg-[#004888] text-white text-lg font-bold tracking-wider text-center transition-colors hover:bg-[#003366]"
             >
               この職種に応募する
