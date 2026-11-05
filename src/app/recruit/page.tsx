@@ -540,7 +540,7 @@ export default function RecruitPage() {
           <FadeInUp delay={100}>
             <div className="overflow-hidden">
               <Image
-                src="/images/recruit-main.jpg"
+                src="/images/recruit-environment.png"
                 alt="働く環境"
                 width={1200}
                 height={600}
