@@ -35,7 +35,6 @@ type Position = {
   employmentType: string;
   salary: string;
   salaryRange: string;
-  salaryNotes?: string[];
   tags: string[];
   summary: string;
   jobDescription: string[];
@@ -43,6 +42,7 @@ type Position = {
   workHours?: string;
   holidays?: string[];
   benefits: string[];
+  extraSections?: { title: string; items: string[] }[];
   incomeExamples?: string[];
   selectionFlow?: string[];
 };
@@ -184,9 +184,9 @@ const positions: Position[] = [
     id: "injection",
     title: "射出成形オペレーター",
     image: "/images/recruit-injection.png",
-    employmentType: "中途採用（正社員）",
-    salary: "月給 205,000円〜330,000円",
-    salaryRange: "20.5万〜33万円",
+    employmentType: "中途採用（正社員）/ パート",
+    salary: "月給 205,000円〜330,000円（正社員）",
+    salaryRange: "月給20.5万〜33万円 / パート時給2,000円〜",
     applyUrl: "/contact#inquiry",
     tags: ["経験者", "学歴不問", "急募"],
     summary: "「射出成形オペレーター」あなたが培ってきた「プラスチック射出成形」の技術と経験を存分に発揮しませんか",
@@ -211,6 +211,20 @@ const positions: Position[] = [
       "家族手当（配偶者：5,000円、子：2,500円※3人まで）",
       "賞与年2回（業績に応じて支給）",
     ],
+    extraSections: [
+      {
+        title: "パート募集",
+        items: [
+          "時給 2,000円〜2,500円",
+          "仕事内容：社内射出成形機（東芝170t、450t）を使用して、新作金型、修理、設変金型の確認成形",
+          "応募資格：学歴不問 / 射出成形業務経験者",
+          "駐車場あり",
+          "通勤手当：実費支給（上限あり 月額10,000円）",
+          "賃金締切日：固定（月末）",
+          "賃金支払日：固定（翌月20日）",
+        ],
+      },
+    ],
     incomeExamples: [
       "350万円 / 入社1年目・26歳",
       "400万円 / 入社5年目・29歳",
@@ -222,24 +236,6 @@ const positions: Position[] = [
       "面接（見学も可能です）",
       "内定 ※最短3日以内の入社が可能",
     ],
-  },
-  {
-    id: "injection-part",
-    title: "プラスチック射出成形",
-    image: "/images/recruit-injection.png",
-    employmentType: "パート",
-    salary: "時給 2,000円〜2,500円",
-    salaryRange: "時給 2,000円〜2,500円",
-    salaryNotes: ["賃金締切日：固定（月末）", "賃金支払日：固定（翌月20日）"],
-    applyUrl: "/contact#inquiry",
-    tags: ["経験者", "学歴不問", "急募"],
-    summary: "射出成形業務経験者/学歴不問急募",
-    jobDescription: [
-      "【射出成形業務】",
-      "社内射出成形機（東芝170t、450t）を使用して、新作金型、修理、設変金型の確認成形",
-    ],
-    requirements: ["学歴不問 / 射出成形業務経験者"],
-    benefits: ["駐車場あり", "通勤手当：実費支給（上限あり 月額10,000円）"],
   },
 ];
 
@@ -310,11 +306,6 @@ function PositionModal({
           <div className="bg-gray-50 p-4 rounded-lg mb-6">
             <p className="text-sm text-gray-600 mb-1">給与</p>
             <p className="text-xl font-bold text-[#004888]">{position.salary}</p>
-            {position.salaryNotes?.map((note) => (
-              <p key={note} className="text-sm text-gray-600 mt-1">
-                {note}
-              </p>
-            ))}
           </div>
 
           {/* Job Description */}
@@ -387,6 +378,22 @@ function PositionModal({
               ))}
             </ul>
           </div>
+
+          {/* Extra Sections */}
+          {position.extraSections?.map((section) => (
+            <div key={section.title} className="mb-6">
+              <h4 className="text-lg font-bold text-gray-800 mb-3 pb-2 border-b border-gray-200">
+                {section.title}
+              </h4>
+              <ul className="space-y-2">
+                {section.items.map((item, i) => (
+                  <li key={i} className="text-gray-700">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
 
           {/* Income Examples */}
           {position.incomeExamples && (
