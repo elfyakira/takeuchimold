@@ -29,11 +29,8 @@ const cultureItems = [
 
 type Position = {
   id: string;
-  /** true の間はサイトに表示しない（内容準備中の求人用） */
-  draft?: boolean;
   title: string;
-  /** 写真が未提供の場合は省略可（「写真準備中」のプレースホルダーを表示） */
-  image?: string;
+  image: string;
   applyUrl: string;
   employmentType: string;
   salary: string;
@@ -81,7 +78,7 @@ const positions: Position[] = [
       "仕出し弁当（3割負担）",
       "役職手当（10,000〜50,000円）",
       "家族手当（配偶者：5,000円、子：2,500円※3人まで）",
-      "賞与年2回",
+      "賞与年2回（業績に応じて支給）",
     ],
     incomeExamples: [
       "350万円 / 入社1年目・26歳",
@@ -125,7 +122,7 @@ const positions: Position[] = [
       "仕出し弁当（3割負担）",
       "役職手当（10,000〜50,000円）",
       "家族手当（配偶者：5,000円、子：2,500円※3人まで）",
-      "賞与年2回",
+      "賞与年2回（業績に応じて支給）",
     ],
     incomeExamples: [
       "350万円 / 入社1年目・26歳",
@@ -169,7 +166,7 @@ const positions: Position[] = [
       "仕出し弁当（3割負担）",
       "役職手当（10,000〜50,000円）",
       "家族手当（配偶者：5,000円、子：2,500円※3人まで）",
-      "賞与年2回",
+      "賞与年2回（業績に応じて支給）",
     ],
     incomeExamples: [
       "350万円 / 入社1年目・26歳",
@@ -189,7 +186,7 @@ const positions: Position[] = [
     image: "/images/recruit-injection.png",
     employmentType: "中途採用（正社員）/ パート",
     salary: "月給 205,000円〜330,000円（正社員）",
-    salaryRange: "月給20.5万〜33万円 / パート時給2,000円〜3,500円",
+    salaryRange: "月給20.5万〜33万円 / パート時給2,000円〜",
     applyUrl: "/contact#inquiry",
     tags: ["経験者", "学歴不問", "急募"],
     summary: "「射出成形オペレーター」あなたが培ってきた「プラスチック射出成形」の技術と経験を存分に発揮しませんか",
@@ -212,13 +209,13 @@ const positions: Position[] = [
       "仕出し弁当（3割負担）",
       "役職手当（10,000〜50,000円）",
       "家族手当（配偶者：5,000円、子：2,500円※3人まで）",
-      "賞与年2回",
+      "賞与年2回（業績に応じて支給）",
     ],
     extraSections: [
       {
         title: "パート募集",
         items: [
-          "時給 2,000円〜3,500円",
+          "時給 2,000円〜2,500円",
           "仕事内容：社内射出成形機（東芝170t、450t）を使用して、新作金型、修理、設変金型の確認成形",
           "応募資格：学歴不問 / 射出成形業務経験者",
           "駐車場あり",
@@ -228,38 +225,10 @@ const positions: Position[] = [
         ],
       },
     ],
-    selectionFlow: [
-      "「応募する」ボタンよりご応募",
-      "採用担当者より、お電話もしくはメールにてご連絡",
-      "面接（見学も可能です）",
-      "内定 ※最短3日以内の入社が可能",
-    ],
-  },
-  {
-    // TODO: 給与・仕事内容・応募資格・タグ・キャッチコピーをお客様から受領後に記入し、draft を外して公開
-    // 写真は受領後 public/images/recruit-sales.webp に配置し、下の image のコメントを外す
-    id: "sales",
-    draft: true,
-    title: "金型営業",
-    // image: "/images/recruit-sales.webp",
-    employmentType: "中途採用（正社員）",
-    salary: "",
-    salaryRange: "",
-    applyUrl: "/contact#inquiry",
-    tags: [],
-    summary: "",
-    jobDescription: [],
-    requirements: [],
-    workHours: "8:00〜16:45（実働7時間45分、休憩12:00〜13:00）",
-    holidays: ["週休2日制（会社カレンダーに準ずる）", "GW休暇", "夏季休暇", "年末年始休暇"],
-    benefits: [
-      "各種社会保険完備（雇用・厚生年金・労災・健康）",
-      "交通費支給（5,000〜20,000円）",
-      "資格取得支援",
-      "仕出し弁当（3割負担）",
-      "役職手当（10,000〜50,000円）",
-      "家族手当（配偶者：5,000円、子：2,500円※3人まで）",
-      "賞与年2回",
+    incomeExamples: [
+      "350万円 / 入社1年目・26歳",
+      "400万円 / 入社5年目・29歳",
+      "500万円 / 入社10年目・33歳",
     ],
     selectionFlow: [
       "「応募する」ボタンよりご応募",
@@ -269,20 +238,6 @@ const positions: Position[] = [
     ],
   },
 ];
-
-const publishedPositions = positions.filter((p) => !p.draft);
-
-function PhotoPlaceholder() {
-  return (
-    <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-[#004888] to-[#003366] text-white/80">
-      <svg className="w-12 h-12 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-      </svg>
-      <span className="text-sm tracking-wider">写真準備中</span>
-    </div>
-  );
-}
 
 function PositionModal({
   position,
@@ -315,16 +270,12 @@ function PositionModal({
 
         {/* Header Image */}
         <div className="relative h-[200px] lg:h-[280px]">
-          {position.image ? (
-            <Image
-              src={position.image}
-              alt={position.title}
-              fill
-              className="object-cover"
-            />
-          ) : (
-            <PhotoPlaceholder />
-          )}
+          <Image
+            src={position.image}
+            alt={position.title}
+            fill
+            className="object-cover"
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
           <div className="absolute bottom-4 left-6 right-6">
             <p className="text-white/80 text-sm mb-1">{position.employmentType}</p>
@@ -613,7 +564,7 @@ export default function RecruitPage() {
           </FadeInUp>
 
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8" staggerDelay={100}>
-            {publishedPositions.map((position) => (
+            {positions.map((position) => (
               <button
                 key={position.id}
                 onClick={() => setSelectedPosition(position)}
@@ -621,16 +572,12 @@ export default function RecruitPage() {
               >
                 {/* Card Image */}
                 <div className="relative h-[200px] overflow-hidden">
-                  {position.image ? (
-                    <Image
-                      src={position.image}
-                      alt={position.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  ) : (
-                    <PhotoPlaceholder />
-                  )}
+                  <Image
+                    src={position.image}
+                    alt={position.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
 
                 {/* Card Content */}
