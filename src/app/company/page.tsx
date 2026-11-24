@@ -36,7 +36,7 @@ export default function CompanyPage() {
       <HeroBackground>
         <section
           className="h-[300px] lg:h-[500px] bg-fixed bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/company-hero.png')" }}
+          style={{ backgroundImage: "url('/images/company-hero-technocenter.png')" }}
           role="img"
           aria-label="社屋外観"
         />
