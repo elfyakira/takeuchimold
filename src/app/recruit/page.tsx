@@ -30,7 +30,8 @@ const cultureItems = [
 type Position = {
   id: string;
   title: string;
-  image: string;
+  /** 写真が未提供の場合は省略可（「写真準備中」を表示） */
+  image?: string;
   applyUrl: string;
   employmentType: string;
   salary: string;
@@ -228,7 +229,50 @@ const positions: Position[] = [
       "内定 ※最短3日以内の入社が可能",
     ],
   },
+  {
+    // TODO: 条件確定後に「準備中」の項目を差し替え
+    // 写真は受領後 public/images/recruit-sales.webp に配置し、下の image のコメントを外す
+    id: "sales",
+    title: "金型営業",
+    // image: "/images/recruit-sales.webp",
+    employmentType: "中途採用（正社員）",
+    salary: "準備中",
+    salaryRange: "給与：準備中",
+    applyUrl: "/contact#inquiry",
+    tags: [],
+    summary: "募集内容の詳細は準備中です。ご興味のある方はお気軽にお問い合わせください。",
+    jobDescription: ["準備中"],
+    requirements: ["準備中"],
+    workHours: "8:00〜16:45（実働7時間45分、休憩12:00〜13:00）",
+    holidays: ["週休2日制（会社カレンダーに準ずる）", "GW休暇", "夏季休暇", "年末年始休暇"],
+    benefits: [
+      "各種社会保険完備（雇用・厚生年金・労災・健康）",
+      "交通費支給（5,000〜20,000円）",
+      "資格取得支援",
+      "仕出し弁当（3割負担）",
+      "役職手当（10,000〜50,000円）",
+      "家族手当（配偶者：5,000円、子：2,500円※3人まで）",
+    ],
+    selectionFlow: [
+      "「応募する」ボタンよりご応募",
+      "採用担当者より、お電話もしくはメールにてご連絡",
+      "面接（見学も可能です）",
+      "内定 ※最短3日以内の入社が可能",
+    ],
+  },
 ];
+
+function PhotoPlaceholder() {
+  return (
+    <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-[#004888] to-[#003366] text-white/80">
+      <svg className="w-12 h-12 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+      </svg>
+      <span className="text-sm tracking-wider">写真準備中</span>
+    </div>
+  );
+}
 
 function PositionModal({
   position,
@@ -261,12 +305,16 @@ function PositionModal({
 
         {/* Header Image */}
         <div className="relative h-[200px] lg:h-[280px]">
-          <Image
-            src={position.image}
-            alt={position.title}
-            fill
-            className="object-cover"
-          />
+          {position.image ? (
+            <Image
+              src={position.image}
+              alt={position.title}
+              fill
+              className="object-cover"
+            />
+          ) : (
+            <PhotoPlaceholder />
+          )}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
           <div className="absolute bottom-4 left-6 right-6">
             <p className="text-white/80 text-sm mb-1">{position.employmentType}</p>
@@ -559,16 +607,20 @@ export default function RecruitPage() {
               <button
                 key={position.id}
                 onClick={() => setSelectedPosition(position)}
-                className="bg-white text-left group hover:shadow-lg transition-shadow duration-300"
+                className="bg-white text-left group hover:shadow-lg transition-shadow duration-300 flex flex-col justify-start"
               >
                 {/* Card Image */}
-                <div className="relative h-[200px] overflow-hidden">
-                  <Image
-                    src={position.image}
-                    alt={position.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
+                <div className="relative w-full h-[200px] overflow-hidden">
+                  {position.image ? (
+                    <Image
+                      src={position.image}
+                      alt={position.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  ) : (
+                    <PhotoPlaceholder />
+                  )}
                 </div>
 
                 {/* Card Content */}
